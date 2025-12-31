@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Supermercados Comodin — Evaluá talento con criterio profesional</title>
+  <title>ONE — Evaluá talento con criterio profesional</title>
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="./img/favicon.png" sizes="32x32">
@@ -108,7 +108,7 @@
 
     /* =======================
        ✅ HEADER (estética ONE)
-       Mantiene logo/nombre Comodin
+       Mantiene logo/nombre ONE
        ======================= */
     header{
       width:100%;
@@ -134,7 +134,7 @@
       gap:18px;
     }
 
-    /* ✅ Logo + nombre (Comodin) */
+    /* ✅ Logo + nombre (ONE) */
     .brand{
       display:flex;
       align-items:center;
@@ -144,7 +144,7 @@
     .brand .mark{
       width:40px;height:40px;
       border-radius:999px;
-      background-image: url('./img/escencial-logo.png');
+      background-image: url('./img/one-logocolor.png');
       background-size: cover;
       background-position:center;
       box-shadow: 0 0 0 1px rgba(198,201,215,.18), 0 0 40px rgba(107,225,227,.18);
@@ -497,6 +497,128 @@
     @media (prefers-reduced-motion: reduce){
       .btn, nav a, .feature-card { transition:none !important; }
     }
+
+
+/* ══════════════════════════════════════════════════════════
+   FOOTER PREMIUM (Degradado + Efecto)
+   ══════════════════════════════════════════════════════════ */
+
+/* Asegura que el footer quede siempre abajo */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+/* Asume que tienes un contenedor principal para el contenido */
+.main-container { flex: 1; }
+
+/* Estilos Principales del Footer */
+.premium-footer {
+    width: 100%;
+    margin-top: auto;
+    /* Franja rosa superior */
+    border-top: 3px solid #ff69b4;
+    
+    /* Fondo degradado de negro a marrón oscuro con transparencia */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(40, 20, 10, 0.85));
+    
+    /* Efecto de desenfoque (glassmorphism) */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    
+    padding: 18px 0;
+    color: #ffffff;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* --- Lado Izquierdo --- */
+.footer-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    opacity: 0.85; /* Ligeramente atenuado */
+}
+
+/* Ajuste del tamaño del logo de letra "ONE" */
+.footer-logo-letra {
+    height: 18px;
+    width: auto;
+    vertical-align: middle;
+}
+
+/* --- Lado Derecho --- */
+.footer-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.developed-txt {
+    font-size: 12px;
+    letter-spacing: 1px;
+    opacity: 0.7;
+}
+
+/* Estilos del enlace que contiene los logos */
+.dev-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.dev-link:hover {
+    opacity: 0.8;
+    transform: translateY(-1px);
+}
+
+/* Tamaños de los logos del desarrollador */
+.dev-logo-one {
+    height: 22px;
+    width: auto;
+}
+
+.by-txt {
+    margin: 0 6px;
+    font-style: italic;
+    opacity: 0.7;
+    font-size: 13px;
+}
+
+.dev-logo-escencial {
+    height: 24px; /* Ajustado para el logo blanco de Escencial */
+    width: auto;
+}
+
+/* Responsive: Se adapta a pantallas pequeñas */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .footer-left, .footer-right {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .developed-txt {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+}
+
   </style>
 </head>
 
@@ -509,10 +631,10 @@
   <div class="wrap">
     <header id="header">
       <div class="nav">
-        <div class="brand" aria-label="Marca Supermercados Comodin">
+        <div class="brand" aria-label="Marca ONE ">
           <div class="mark" aria-hidden="true"></div>
           <div>
-            <div class="name">Supermercados Comodin</div>
+            <div class="name">Supermercados ONE</div>
             <span class="sub">Plataforma de evaluación</span>
           </div>
         </div>
@@ -605,6 +727,25 @@
         </div>
       </section>
     </main>
+
+<footer class="premium-footer">
+    <div class="footer-container">
+        <div class="footer-left">
+            <img src="../../img/one-logoletra.png" alt="ONE" class="footer-logo-letra">
+            <span> | Todos los derechos reservados. © 2026</span>
+        </div>
+
+        <div class="footer-right">
+            <span class="developed-txt">Desarrollado por</span>
+            <a href="https://escencialconsultora.com.ar/" target="_blank" class="dev-link" title="Ir a Escencial Consultora">
+                <img src="../../img/one-logocolor.png" alt="ONE" class="dev-logo-one">
+                <span class="by-txt">by</span>
+                <img src="../../img/escencial-logoblanco.png" alt="Escencial" class="dev-logo-escencial">
+            </a>
+        </div>
+    </div>
+</footer>
+
   </div>
 
   <script>

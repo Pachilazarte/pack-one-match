@@ -15,7 +15,7 @@
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
       min-height: 100vh;
       padding: 24px;
-      background-image: url('../../img/fondo-escencial.jpg');
+      background-image: url('../../img/one-fondograndecolor.jpg');
       background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
@@ -438,6 +438,15 @@
       .question-text { font-size: 18px; }
       .option { padding: 16px; }
     }
+
+.one-logocolor {
+        display: block;
+        width: 250px;             /* Ancho fijo de 250px */
+        height: auto;             /* Altura automática para no deformar */
+        margin: 0 auto 20px auto; /* Centrado y separado del título de abajo */
+        object-fit: contain;
+    }
+
   </style>
 </head>
 <body>
@@ -499,11 +508,35 @@
         @media print {
             .btn-back { display: none !important; }
         }
+
+.-one-logocolor {
+    display: block;      /* Permite centrar con margin auto */
+    margin: 0 auto 1.5rem auto; /* Centrado y con espacio abajo de 1.5rem */
+    width: 250px;        /* El tamaño que pediste */
+    height: auto;        /* Mantiene la proporción */
+    object-fit: contain;
+}
+
+/* Ajustes para los textos de la pantalla de registro */
+#registrationScreen h1 {
+    font-size: 1.8rem;
+    color: var(--escencial-navy);
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+#registrationScreen .subtitle {
+    font-size: 1.1rem;
+    color: #666; /* Un gris más profesional */
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
     </style>
 
   <!-- Pantalla de Registro -->
-  <div id="registrationScreen" class="container" style="max-width:650px;">
-    <img src="../../img/logo-escencial.png" alt="Logo Escencial" class="logo">
+<div id="registrationScreen" class="container" style="max-width:650px;">
+    <img src="../../img/one-logocolor.png" alt="one-logocolor" class="one-logocolor">
     <h1>DNLA - Perfil Comercial</h1>
     <p class="subtitle">Evaluación de Competencias de Ventas</p>
 
@@ -533,7 +566,7 @@
 
   <!-- Pantalla del Test -->
   <div id="testScreen" class="container hidden">
-    <img src="../../img/logo-escencial.png" alt="Logo Escencial" class="logo">
+    <img src="../../img/one-logocolor.png" alt="one-logocolor" class="one-logocolor">
     <h2 id="participantName">📊 Participante</h2>
 
     <div class="progress-text">
@@ -555,7 +588,7 @@
 
   <!-- Pantalla de Confirmación -->
   <div id="successScreen" class="container hidden" style="max-width:650px; padding-top:32px; padding-bottom:32px;">
-    <img src="../../img/logo-escencial.png" alt="Logo Escencial" class="logo">
+    <img src="../../img/one-logocolor.png" alt="one-logocolor" class="one-logocolor">
     
     <div class="success-message">
       <div class="success-icon">✅</div>
@@ -572,7 +605,7 @@
 
   <!-- Pantalla de Resultados (opcional - puedes eliminarla si no la usas) -->
   <div id="resultsScreen" class="container hidden">
-    <img src="../../img/logo-escencial.png" alt="Logo DNLA" class="logo-results">
+    <img src="../../img/one-logocolor.png" alt="one-logocolor" class="one-logocolor">
     
     <div id="globalInterpretation" class="result-card" style="text-align:center; margin-bottom:32px;">
       <!-- Se llena dinámicamente -->
