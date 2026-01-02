@@ -47,44 +47,62 @@ html {
   height: 100%;
 }
 
-body {
-  min-height: 100%;
-  margin: 0;
-  
+.bg {
+  position: fixed;
+  inset: 0; /* Ocupa toda la pantalla siempre */
+  z-index: -1; /* Se pone DETRÁS de todo el contenido */
+  pointer-events: none;
 
-/* Footer CSS*/
-  /* Estructura flexible para empujar el footer */
-  display: flex;
-  flex-direction: column;
-  
-  /* Color de seguridad negro por si el gradiente falla al hacer zoom */
-  background-color: #000; 
-  color: var(--c-white);
-  
-  /* Tu fondo original CON fixed para que no se rompa al scrollear */
-  background-image: 
+  /* ✅ TODO EL DISEÑO VISUAL VA AQUÍ */
+  background: 
+    /* Tus luces y gradientes */
     radial-gradient(1200px 700px at 70% 25%, rgba(225,123,215,.18), transparent 55%),
     radial-gradient(1100px 700px at 80% 60%, rgba(107,225,227,.14), transparent 55%),
     radial-gradient(900px 600px at 20% 70%, rgba(228,199,106,.10), transparent 60%),
+    /* Tu fondo base (negro) */
     linear-gradient(180deg, var(--c-black), var(--c-ink));
-  
-  background-attachment: fixed; /* Mantiene el fondo quieto aunque hagas zoom */
-  background-size: cover;       /* Asegura que cubra todo */
-  
-  font-family: var(--font-sub);
-  overflow-x: hidden;
+    
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
     a{ color:inherit; text-decoration:none; }
     img{ max-width:100%; display:block; }
 
-    /* Fondo extra (hex + haze) */
-    .bg{
-      position:fixed;
-      inset:0;
-      pointer-events:none;
-      z-index:0;
-    }
+.bg {
+  position: fixed;
+  inset: 0; /* Ocupa toda la pantalla siempre */
+  z-index: -1; /* Se pone DETRÁS de todo el contenido */
+  pointer-events: none;
+
+  /* ✅ TODO EL DISEÑO VISUAL VA AQUÍ */
+  background: 
+    /* Tus luces y gradientes */
+    radial-gradient(1200px 700px at 70% 25%, rgba(225,123,215,.18), transparent 55%),
+    radial-gradient(1100px 700px at 80% 60%, rgba(107,225,227,.14), transparent 55%),
+    radial-gradient(900px 600px at 20% 70%, rgba(228,199,106,.10), transparent 60%),
+    /* Tu fondo base (negro) */
+    linear-gradient(180deg, var(--c-black), var(--c-ink));
+    
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+  /* ✅ MOVEMOS LOS GRADIENTES AQUÍ */
+  /* Al estar en un div fixed, nunca se cortarán ni desincronizarán */
+  background: 
+    radial-gradient(1200px 700px at 70% 25%, rgba(225,123,215,.18), transparent 55%),
+    radial-gradient(1100px 700px at 80% 60%, rgba(107,225,227,.14), transparent 55%),
+    radial-gradient(900px 600px at 20% 70%, rgba(228,199,106,.10), transparent 60%),
+    linear-gradient(180deg, var(--c-black), var(--c-ink));
+    
+  background-size: cover; /* Asegura que cubra todo */
+  background-position: center center;
+}
+    
+
     .bg::before{
       content:"";
       position:absolute;
@@ -121,13 +139,11 @@ body {
     /*diseño footer wrap*/
 .wrap {
   position: relative;
-  z-index: 1;
-  
-  /* Esto hace la magia del autoadaptable: */
+  z-index: 1; /* Esto lo pone por ENCIMA del .bg */
   display: flex;
   flex-direction: column;
-  flex: 1; /* Ocupa todo el espacio vertical disponible */
-  min-height: 100vh; /* Fuerza altura completa de pantalla */
+  flex: 1;
+  min-height: 100vh;
 }
 
     /* =======================
@@ -550,11 +566,21 @@ main {
    FOOTER PREMIUM (Degradado + Efecto)
    ══════════════════════════════════════════════════════════ */
 
-/* Asegura que el footer quede siempre abajo */
 body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+  min-height: 100vh;
+  margin: 0;
+
+  /* Estructura para el footer */
+  display: flex;
+  flex-direction: column;
+
+  /* ✅ QUITAMOS LOS GRADIENTES DE AQUÍ */
+  /* Solo dejamos negro sólido por seguridad */
+  background-color: var(--c-black);
+  color: var(--c-white);
+  
+  font-family: var(--font-sub);
+  overflow-x: hidden;
 }
 /* Asume que tienes un contenedor principal para el contenido */
 .main-container { flex: 1; }
@@ -747,7 +773,7 @@ html {
 
           <h1>
             Evaluá talento con<br />
-            <span class="grad-cyan">criterio</span> <span class="grad-pink">profesional</span>.
+            <span class="grad-cyan">criterio</span> <span class="grad-pink">profesional.</span>
           </h1>
 
           <p class="lead">
