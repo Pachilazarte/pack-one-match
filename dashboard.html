@@ -37,6 +37,67 @@
         --stroke: rgba(198, 201, 215, .25);
     }
 
+/* --- INICIO DEL CAMBIO --- */
+
+    .test-badge {
+        display: inline-block;
+        padding: .3rem .7rem;
+        font-size: .75rem;
+        border-radius: 999px;
+        font-weight: 800;
+        /* Fondo sutil común */
+        background: rgba(254, 254, 255, .05);
+        backdrop-filter: blur(10px);
+        /* Borde base transparente para que mande el específico */
+        border: 1px solid transparent; 
+        transition: transform .2s ease;
+    }
+
+    /* Test 1: CYAN (Tu paleta) */
+    .test-badge-1 {
+        color: var(--c-cyan);
+        border-color: rgba(107, 225, 227, .35);
+        box-shadow: 0 0 0 1px rgba(107, 225, 227, .12), 0 0 20px rgba(107, 225, 227, .15);
+    }
+
+    /* Test 2: PINK (Tu paleta) */
+    .test-badge-2 {
+        color: var(--c-pink);
+        border-color: rgba(225, 123, 215, .35);
+        box-shadow: 0 0 0 1px rgba(225, 123, 215, .12), 0 0 20px rgba(225, 123, 215, .15);
+    }
+
+    /* Test 3: GOLD (Tu paleta) */
+    .test-badge-3 {
+        color: var(--c-gold);
+        border-color: rgba(228, 199, 106, .35);
+        box-shadow: 0 0 0 1px rgba(228, 199, 106, .12), 0 0 20px rgba(228, 199, 106, .15);
+    }
+
+    /* Test 4: VIOLETA (Complementario Dark) */
+    .test-badge-4 {
+        color: #bd93f9;
+        border-color: rgba(189, 147, 249, .35);
+        box-shadow: 0 0 0 1px rgba(189, 147, 249, .12), 0 0 20px rgba(189, 147, 249, .12);
+    }
+
+    /* Test 5: VERDE NEÓN (Complementario Dark) */
+    .test-badge-5 {
+        color: #50fa7b;
+        border-color: rgba(80, 250, 123, .35);
+        box-shadow: 0 0 0 1px rgba(80, 250, 123, .12), 0 0 20px rgba(80, 250, 123, .12);
+    }
+
+    /* Test 6: NARANJA SUAVE (Complementario Dark) */
+    .test-badge-6 {
+        color: #ffb86c;
+        border-color: rgba(255, 184, 108, .35);
+        box-shadow: 0 0 0 1px rgba(255, 184, 108, .12), 0 0 20px rgba(255, 184, 108, .12);
+    }
+
+    /* --- FIN DEL CAMBIO --- */
+
+
     * {
         box-sizing: border-box;
         margin: 0;
@@ -155,13 +216,18 @@
         }
     }
 
-    .login-logo {
+.login-logo {
         width: 80px;
         height: 80px;
-        border-radius: 999px;
+        border-radius: 50%; /* Círculo perfecto */
+        
         background-image: url('./img/one-logocolor.png');
-        background-size: cover;
+        
+        /* ✅ CORRECCIÓN: */
+        background-size: contain; /* Ajusta la imagen completa dentro */
+        background-repeat: no-repeat;
         background-position: center;
+        
         box-shadow: 0 0 0 1px rgba(198, 201, 215, .18), 0 0 40px rgba(107, 225, 227, .18);
         animation: logoPulse 4.5s ease-in-out infinite;
         margin: 0 auto 1.5rem;
@@ -353,23 +419,65 @@
         gap: .75rem;
     }
 
-    .brand-logo {
+/* logo admin */
+.brand-logo {
         width: 45px;
         height: 45px;
-        border-radius: 999px;
+        border-radius: 50%; /* Hace el contenedor redondo */
+        
         background-image: url('./img/one-logocolor.png');
-        background-size: cover;
+        background-size: 85%; /* Logo un poco más chico para que no toque bordes */
+        background-repeat: no-repeat;
         background-position: center;
-        box-shadow: 0 0 0 1px rgba(198, 201, 215, .18), 0 0 40px rgba(107, 225, 227, .18);
-        animation: logoPulse 4.5s ease-in-out infinite;
+        
+        /* Borde real suave */
+        border: 1px solid rgba(198, 201, 215, .25);
+        
+        /* Sombra externa (glow) */
+        box-shadow: 0 0 35px rgba(107, 225, 227, .25);
+        
         position: relative;
-        overflow: hidden;
+        flex-shrink: 0;
+        
+        /* ✅ LA CLAVE: Esto recorta todo lo que se salga del círculo (incluidas las puntas) */
+        overflow: hidden; 
+        
+        /* ✅ EXTRA: Esto ayuda a que el recorte sea suave en algunos navegadores */
+        -webkit-mask-image: -webkit-radial-gradient(white, black);
     }
 
+.brand-logo {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%; /* Hace el contenedor redondo */
+        
+        background-image: url('./img/one-logocolor.png');
+        background-size: 85%; /* Logo un poco más chico para que no toque bordes */
+        background-repeat: no-repeat;
+        background-position: center;
+        
+        /* Borde real suave */
+        border: 1px solid rgba(198, 201, 215, .25);
+        
+        /* Sombra externa (glow) */
+        box-shadow: 0 0 35px rgba(107, 225, 227, .25);
+        
+        position: relative;
+        flex-shrink: 0;
+        
+        /* ✅ LA CLAVE: Esto recorta todo lo que se salga del círculo (incluidas las puntas) */
+        overflow: hidden; 
+        
+        /* ✅ EXTRA: Esto ayuda a que el recorte sea suave en algunos navegadores */
+        -webkit-mask-image: -webkit-radial-gradient(white, black);
+    }
+
+    /* Aseguramos que el brillo también sea redondo por si acaso */
     .brand-logo::after {
         content: "";
         position: absolute;
         inset: 0;
+        border-radius: 50%; /* 👈 Seguridad doble */
         background: radial-gradient(circle at 30% 30%, rgba(254, 254, 255, .14), transparent 55%);
         pointer-events: none;
     }
@@ -566,41 +674,6 @@
         gap: .4rem;
     }
 
-    .test-badge {
-        display: inline-block;
-        padding: .3rem .7rem;
-        font-size: .75rem;
-        border-radius: 999px;
-        font-weight: 800;
-        color: rgba(254, 254, 255, .92);
-        border: 1px solid rgba(198, 201, 215, .18);
-        background: rgba(254, 254, 255, .06);
-        backdrop-filter: blur(10px);
-    }
-
-    .test-badge-1 {
-        box-shadow: 0 0 0 1px rgba(228, 199, 106, .18), 0 0 28px rgba(228, 199, 106, .10);
-    }
-
-    .test-badge-2 {
-        box-shadow: 0 0 0 1px rgba(107, 225, 227, .18), 0 0 28px rgba(107, 225, 227, .10);
-    }
-
-    .test-badge-3 {
-        box-shadow: 0 0 0 1px rgba(225, 123, 215, .18), 0 0 28px rgba(225, 123, 215, .10);
-    }
-
-    .test-badge-4 {
-        box-shadow: 0 0 0 1px rgba(164, 168, 192, .20), 0 0 24px rgba(164, 168, 192, .08);
-    }
-
-    .test-badge-5 {
-        box-shadow: 0 0 0 1px rgba(228, 199, 106, .16), 0 0 24px rgba(225, 123, 215, .08);
-    }
-
-    .test-badge-6 {
-        box-shadow: 0 0 0 1px rgba(107, 225, 227, .16), 0 0 24px rgba(228, 199, 106, .08);
-    }
 
     .form-title {
         font-family: var(--font-title);
@@ -832,15 +905,14 @@ body {
 .premium-footer {
     width: 100%;
     margin-top: auto;
-    /* Franja rosa superior */
     border-top: 3px solid #ff69b4;
     
-    /* Fondo degradado de negro a marrón oscuro con transparencia */
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(40, 20, 10, 0.85));
+    /* Fondo negro sólido */
+    background: #000000 !important;
     
-    /* Efecto de desenfoque (glassmorphism) */
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    /* ✅ QUITAMOS LOS FILTROS (Esto arregla el efecto visual raro) */
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
     
     padding: 18px 0;
     color: #ffffff;
@@ -933,6 +1005,47 @@ body {
         width: 100%;
         margin-bottom: 5px;
     }
+}
+
+/* ════════════════════════════════════════
+   SCROLLBAR DARK AESTHETIC (Negro + Neon)
+   ════════════════════════════════════════ */
+
+/* 1. Dimensiones */
+::-webkit-scrollbar {
+  width: 12px; /* Un pelín más ancha para que luzca el negro */
+  height: 12px;
+}
+
+/* 2. El fondo (el carril) AHORA ES NEGRO EXPLÍCITO */
+/* Esto elimina cualquier riesgo de que se vea blanco de fondo */
+::-webkit-scrollbar-track {
+  background: var(--c-black); 
+}
+
+/* 3. La "píldora" neon */
+::-webkit-scrollbar-thumb {
+  /* Tu degradado de marca */
+  background: linear-gradient(180deg, var(--c-cyan), var(--c-pink));
+  
+  border-radius: 99px;
+  
+  /* CLAVE: El borde es del mismo color que el fondo (NEGRO) */
+  /* Esto crea el efecto de "flotar" pero sobre negro, nunca sobre blanco */
+  border: 3px solid var(--c-black);
+  background-clip: content-box;
+}
+
+/* 4. Efecto Hover: Se ilumina más */
+::-webkit-scrollbar-thumb:hover {
+  border: 2px solid var(--c-black); /* Se hace un poco más gordita */
+  background: linear-gradient(180deg, #6be1e3, #e17bd7);
+}
+
+/* Compatibilidad Firefox */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--c-pink) var(--c-black); /* Píldora rosa, fondo NEGRO */
 }
 
 </style>
@@ -1071,32 +1184,28 @@ body {
                             <div class="checkbox-list">
                                 <label class="checkbox-item">
                                     <input type="checkbox" name="test" value="1" />
-                                    <span>Dominó 48</span>
+                                    <span>Test N°1: Dominó 48</span>
                                 </label>
 
                                 <label class="checkbox-item">
                                     <input type="checkbox" name="test" value="2" />
-                                    <span>Toulouse-Piéron</span>
+                                    <span>Test N°2: Toulouse-Piéron</span>
                                 </label>
 
                                 <label class="checkbox-item">
                                     <input type="checkbox" name="test" value="3" />
-                                    <span>DNLA: Sales Profile</span>
+                                    <span>Test N°3: DNLA, Sales Profile</span>
                                 </label>
 
                                 <label class="checkbox-item">
                                     <input type="checkbox" name="test" value="4" />
-                                    <span>Eneagrama Profesional</span>
+                                    <span>Test N°4: DNLA, Personal Insight</span>
                                 </label>
 
                                 <label class="checkbox-item">
                                     <input type="checkbox" name="test" value="5" />
-                                    <span>DNLA: Personal Insight</span>
+                                    <span>Test N°5: Big Five</span>
                                 </label>
-
-                                <label class="checkbox-item">
-                                    <input type="checkbox" name="test" value="6" />
-                                    <span>Big Five </span>
 
                             </div>
                         </div>

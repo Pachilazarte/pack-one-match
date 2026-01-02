@@ -171,28 +171,36 @@
     }
   }
 
-  .login-logo {
+/* ✅ LOGO LOGIN (Réplica exacta del Admin Panel) */
+.login-logo {
     width: 80px;
     height: 80px;
-    border-radius: 999px;
+    border-radius: 50%; /* Círculo perfecto */
+    
     background-image: url('./img/one-logocolor.png');
-    background-size: cover;
+    
+    /* ⚠️ LA CLAVE: 'contain' hace que el logo entre entero sin cortarse */
+    background-size: contain; 
+    background-repeat: no-repeat;
     background-position: center;
+    
+    /* El borde y brillo neón exacto del admin */
     box-shadow: 0 0 0 1px rgba(198, 201, 215, .18), 0 0 40px rgba(107, 225, 227, .18);
     animation: logoPulse 4.5s ease-in-out infinite;
+    
     margin: 0 auto 1.5rem;
     position: relative;
     overflow: hidden;
-  }
+}
 
-  .login-logo::after {
+/* El brillo de "vidrio" encima (igual al admin) */
+.login-logo::after {
     content: "";
     position: absolute;
     inset: 0;
     background: radial-gradient(circle at 30% 30%, rgba(254, 254, 255, .14), transparent 55%);
     pointer-events: none;
-  }
-
+}
   .login-title {
     font-family: var(--font-title);
     font-size: 2rem;
@@ -362,18 +370,36 @@
     gap: .75rem;
   }
 
-  .brand-logo {
-    width: 36px;
-    height: 36px;
-    border-radius: 999px;
-    background-image: url('./img/one-logocolor.png');
-    background-size: cover;
-    background-position: center;
-    box-shadow: 0 0 0 1px rgba(198, 201, 215, .18), 0 0 30px rgba(107, 225, 227, .16);
-    animation: logoPulse 4.5s ease-in-out infinite;
-    position: relative;
-    overflow: hidden;
-  }
+/* ✅ LOGO CORREGIDO (Busca .brand-logo) */
+    .brand-logo {
+        width: 55px;  /* Un poco más grande para que se luzca */
+        height: 55px;
+        
+        /* Asegúrate de que la ruta de la imagen sea correcta */
+        background-image: url('./img/one-logocolor.png');
+        
+        background-size: contain; /* Muestra el logo entero */
+        background-repeat: no-repeat;
+        background-position: center;
+        
+        /* 🚫 Quitamos los efectos de botón redondo */
+        border-radius: 0; 
+        border: none;
+        box-shadow: none;
+        
+        /* ✨ Solo un brillo exterior suave */
+        filter: drop-shadow(0 0 15px rgba(107,225,227,.4));
+        
+        position: relative;
+        flex-shrink: 0;
+        overflow: visible; /* Importante para que no se corte */
+        -webkit-mask-image: none; /* Quitamos la máscara si existía */
+    }
+
+    /* 🚫 Ocultamos el brillo interno redondo */
+    .brand-logo::after {
+        display: none;
+    }
 
   .brand-logo::after {
     content: "";
@@ -669,15 +695,14 @@ body {
 .premium-footer {
     width: 100%;
     margin-top: auto;
-    /* Franja rosa superior */
     border-top: 3px solid #ff69b4;
     
-    /* Fondo degradado de negro a marrón oscuro con transparencia */
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(40, 20, 10, 0.85));
+    /* Fondo negro sólido */
+    background: #000000 !important;
     
-    /* Efecto de desenfoque (glassmorphism) */
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    /* ✅ QUITAMOS LOS FILTROS (Esto arregla el efecto visual raro) */
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
     
     padding: 18px 0;
     color: #ffffff;
@@ -772,6 +797,47 @@ body {
     }
 }
 
+/* ════════════════════════════════════════
+   SCROLLBAR DARK AESTHETIC (Negro + Neon)
+   ════════════════════════════════════════ */
+
+/* 1. Dimensiones */
+::-webkit-scrollbar {
+  width: 12px; /* Un pelín más ancha para que luzca el negro */
+  height: 12px;
+}
+
+/* 2. El fondo (el carril) AHORA ES NEGRO EXPLÍCITO */
+/* Esto elimina cualquier riesgo de que se vea blanco de fondo */
+::-webkit-scrollbar-track {
+  background: var(--c-black); 
+}
+
+/* 3. La "píldora" neon */
+::-webkit-scrollbar-thumb {
+  /* Tu degradado de marca */
+  background: linear-gradient(180deg, var(--c-cyan), var(--c-pink));
+  
+  border-radius: 99px;
+  
+  /* CLAVE: El borde es del mismo color que el fondo (NEGRO) */
+  /* Esto crea el efecto de "flotar" pero sobre negro, nunca sobre blanco */
+  border: 3px solid var(--c-black);
+  background-clip: content-box;
+}
+
+/* 4. Efecto Hover: Se ilumina más */
+::-webkit-scrollbar-thumb:hover {
+  border: 2px solid var(--c-black); /* Se hace un poco más gordita */
+  background: linear-gradient(180deg, #6be1e3, #e17bd7);
+}
+
+/* Compatibilidad Firefox */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--c-pink) var(--c-black); /* Píldora rosa, fondo NEGRO */
+}
+
 </style>
 
 <body>
@@ -790,7 +856,7 @@ body {
         <div class="login-header">
           <div class="login-logo"></div>
           <h1 class="login-title">Bienvenido</h1>
-          <p class="login-subtitle">Panel de Evaluación</p>
+          <p class="login-subtitle">Ingreso exclusivo para usuarios registrados.</p>
         </div>
 
         <form id="login-form">
@@ -888,19 +954,6 @@ body {
 
         <!-- Test 4 -->
         <article class="eval-card" id="test-4">
-          <div class="eval-icon">👥</div>
-          <h3 class="eval-name">ENEAGRAMA PROFESIONAL</h3>
-          <p class="eval-desc">
-            Evalúa potencial, toma de decisiones, influencia y gestión de equipos.
-          </p>
-          <button class="btn-test" onclick="window.location.href='tests/eneagramaprofesional/index.html'">
-            <span>Comenzar Eneagrama Profesional</span>
-            <span class="arrow">→</span>
-          </button>
-        </article>
-
-        <!-- Test 5 -->
-        <article class="eval-card" id="test-5">
           <div class="eval-icon">🧩</div>
           <h3 class="eval-name">DNLA: PERSONAL INSIGHT</h3>
           <p class="eval-desc">
@@ -912,8 +965,8 @@ body {
           </button>
         </article>
 
-        <!-- Test 6 -->
-        <article class="eval-card" id="test-6">
+        <!-- Test 5 -->
+        <article class="eval-card" id="test-5">
           <div class="eval-icon">⭐</div>
           <h3 class="eval-name">BIG FIVE</h3>
           <p class="eval-desc">

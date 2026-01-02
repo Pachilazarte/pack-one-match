@@ -42,17 +42,38 @@
     }
 
     *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      color:var(--c-white);
-      background: radial-gradient(1200px 700px at 70% 25%, rgba(225,123,215,.18), transparent 55%),
-                  radial-gradient(1100px 700px at 80% 60%, rgba(107,225,227,.14), transparent 55%),
-                  radial-gradient(900px 600px at 20% 70%, rgba(228,199,106,.10), transparent 60%),
-                  linear-gradient(180deg, var(--c-black), var(--c-ink));
-      font-family: var(--font-sub);
-      overflow-x:hidden;
-    }
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+  
+
+/* Footer CSS*/
+  /* Estructura flexible para empujar el footer */
+  display: flex;
+  flex-direction: column;
+  
+  /* Color de seguridad negro por si el gradiente falla al hacer zoom */
+  background-color: #000; 
+  color: var(--c-white);
+  
+  /* Tu fondo original CON fixed para que no se rompa al scrollear */
+  background-image: 
+    radial-gradient(1200px 700px at 70% 25%, rgba(225,123,215,.18), transparent 55%),
+    radial-gradient(1100px 700px at 80% 60%, rgba(107,225,227,.14), transparent 55%),
+    radial-gradient(900px 600px at 20% 70%, rgba(228,199,106,.10), transparent 60%),
+    linear-gradient(180deg, var(--c-black), var(--c-ink));
+  
+  background-attachment: fixed; /* Mantiene el fondo quieto aunque hagas zoom */
+  background-size: cover;       /* Asegura que cubra todo */
+  
+  font-family: var(--font-sub);
+  overflow-x: hidden;
+}
 
     a{ color:inherit; text-decoration:none; }
     img{ max-width:100%; display:block; }
@@ -97,14 +118,17 @@
       opacity:1;
     }
 
-    /* layout */
-    .wrap{
-      position:relative;
-      z-index:1;
-      min-height:100%;
-      display:flex;
-      flex-direction:column;
-    }
+    /*diseño footer wrap*/
+.wrap {
+  position: relative;
+  z-index: 1;
+  
+  /* Esto hace la magia del autoadaptable: */
+  display: flex;
+  flex-direction: column;
+  flex: 1; /* Ocupa todo el espacio vertical disponible */
+  min-height: 100vh; /* Fuerza altura completa de pantalla */
+}
 
     /* =======================
        ✅ HEADER (estética ONE)
@@ -141,15 +165,23 @@
       gap:12px;
       user-select:none;
     }
-    .brand .mark{
-      width:40px;height:40px;
-      border-radius:999px;
-      background-image: url('./img/one-logocolor.png');
-      background-size: cover;
-      background-position:center;
+.brand .mark{
+      width: 45px; /* Aumenté un poco el tamaño para que se vea mejor */
+      height: 45px;
+      border-radius: 50%; /* Esto asegura el círculo perfecto */
+      
+      background-image: url('./img/one-iconocolor.png');
+      
+      /* ✅ EL CAMBIO CLAVE: */
+      background-size: contain; /* Ajusta la imagen para que se vea COMPLETA dentro del círculo */
+      background-repeat: no-repeat; /* Evita que se repita si sobra espacio */
+      background-position: center; /* La centra perfectamente */
+      
+      /* Sombra y posición (lo que ya tenías) */
       box-shadow: 0 0 0 1px rgba(198,201,215,.18), 0 0 40px rgba(107,225,227,.18);
-      position:relative;
-      overflow:hidden;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0; /* Evita que el círculo se aplaste si la pantalla es chica */
     }
     .brand .mark::after{
       content:"";
@@ -234,13 +266,28 @@
     /* =======================
        HERO
        ======================= */
-    main{
-      flex:1;
-      width:100%;
-      padding:22px 22px 60px;
-      display:flex;
-      align-items:center;
-    }
+main {
+  /* El main crece para llenar el hueco si hay poco contenido */
+  flex: 1; 
+  width: 100%;
+  padding: 22px 22px 60px;
+  display: flex;
+  align-items: center; /* Centra el contenido verticalmente si sobra espacio */
+}
+
+/* El footer se queda quieto abajo */
+.premium-footer {
+  margin-top: auto; /* Empuja el footer al final si flex falla */
+  flex-shrink: 0;   /* Evita que el footer se aplaste */
+  width: 100%;
+  
+  /* Tu estilo original */
+  border-top: 3px solid #ff69b4;
+  background: #000000 !important;
+  padding: 18px 0;
+  position: relative;
+  z-index: 10; /* Asegura que esté por encima del fondo */
+}
 
     .hero{
       max-width: var(--container);
@@ -516,15 +563,14 @@ body {
 .premium-footer {
     width: 100%;
     margin-top: auto;
-    /* Franja rosa superior */
     border-top: 3px solid #ff69b4;
     
-    /* Fondo degradado de negro a marrón oscuro con transparencia */
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(40, 20, 10, 0.85));
+    /* Fondo negro sólido */
+    background: #000000 !important;
     
-    /* Efecto de desenfoque (glassmorphism) */
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    /* ✅ QUITAMOS LOS FILTROS (Esto arregla el efecto visual raro) */
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
     
     padding: 18px 0;
     color: #ffffff;
@@ -619,6 +665,47 @@ body {
     }
 }
 
+/* ════════════════════════════════════════
+   SCROLLBAR DARK AESTHETIC (Negro + Neon)
+   ════════════════════════════════════════ */
+
+/* 1. Dimensiones */
+::-webkit-scrollbar {
+  width: 12px; /* Un pelín más ancha para que luzca el negro */
+  height: 12px;
+}
+
+/* 2. El fondo (el carril) AHORA ES NEGRO EXPLÍCITO */
+/* Esto elimina cualquier riesgo de que se vea blanco de fondo */
+::-webkit-scrollbar-track {
+  background: var(--c-black); 
+}
+
+/* 3. La "píldora" neon */
+::-webkit-scrollbar-thumb {
+  /* Tu degradado de marca */
+  background: linear-gradient(180deg, var(--c-cyan), var(--c-pink));
+  
+  border-radius: 99px;
+  
+  /* CLAVE: El borde es del mismo color que el fondo (NEGRO) */
+  /* Esto crea el efecto de "flotar" pero sobre negro, nunca sobre blanco */
+  border: 3px solid var(--c-black);
+  background-clip: content-box;
+}
+
+/* 4. Efecto Hover: Se ilumina más */
+::-webkit-scrollbar-thumb:hover {
+  border: 2px solid var(--c-black); /* Se hace un poco más gordita */
+  background: linear-gradient(180deg, #6be1e3, #e17bd7);
+}
+
+/* Compatibilidad Firefox */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--c-pink) var(--c-black); /* Píldora rosa, fondo NEGRO */
+}
+
   </style>
 </head>
 
@@ -634,14 +721,14 @@ body {
         <div class="brand" aria-label="Marca ONE ">
           <div class="mark" aria-hidden="true"></div>
           <div>
-            <div class="name">Supermercados ONE</div>
+            <div class="name">ONE</div>
             <span class="sub">Plataforma de evaluación</span>
           </div>
         </div>
 
         <nav aria-label="Navegación principal">
           <a href="#inicio">Inicio</a>
-          <a href="usuarios.html">Evaluaciones</a>
+          <a href="usuarios.html">Evaluación</a>
         </nav>
 
         <div class="header-cta">
@@ -670,12 +757,12 @@ body {
 
           <!-- ✅ Funcionalidad: navega a las páginas reales -->
           <div class="cta">
-            <a class="btn primary" id="btnStart" href="usuarios.html"><span>Iniciar Evaluación</span></a>
+            <a class="btn primary" id="btnStart" href="usuarios.html"><span>Acceder como Usuario</span></a>
             <a class="btn secondary" id="btnAdmin" href="dashboard.html"><span>Acceder como Admin</span></a>
           </div>
 
           <div class="hint" id="evaluaciones">
-            Tip: mové el mouse para un efecto sutil de profundidad ✨
+            La objetividad es el primer paso para descubrir el verdadero talento ✨
           </div>
         </div>
 
@@ -832,16 +919,6 @@ body {
         const y = (e.clientY - rect.top) / rect.height;
         mx = (x - 0.5);
         my = (y - 0.5);
-      }
-
-      function animateParallax(){
-        tx += (mx - tx) * 0.06;
-        ty += (my - ty) * 0.06;
-
-        visual.style.transform = `translate(${tx*4}px, ${ty*4}px)`;
-        if(grid) grid.style.transform = `translate(${tx*10}px, ${ty*8}px)`;
-
-        requestAnimationFrame(animateParallax);
       }
 
       // Init
