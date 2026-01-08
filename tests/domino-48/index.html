@@ -2,9 +2,9 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test de Dominó D-48 - ONE</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOMINO 48 - ONE</title>
     <link rel="shortcut icon" href="../../img/favicon.png" type="image/png">
 
     <style>
@@ -16,7 +16,8 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+                'Ubuntu', 'Cantarell', 'sans-serif';
             background-color: #0b4a6e;
             min-height: 100vh;
             padding: 20px;
@@ -24,6 +25,7 @@
             overflow-x: hidden;
         }
 
+        /* Fondo con imagen (ajusta la ruta a tu proyecto) */
         body::before {
             content: "";
             position: fixed;
@@ -31,8 +33,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image:
-                url('../../img/one-fondograndecolor.jpg');
+            background-image: url('../../img/one-fondograndecolor.jpg');
             background-size: 100% 100%;
             background-position: center center;
             background-repeat: no-repeat;
@@ -59,6 +60,7 @@
             left: auto;
             transform: translateX(0);
             background-image: url('../../img/one-logocolor.png');
+            /* ajusta ruta/logo */
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
@@ -74,6 +76,20 @@
             top: -35px;
             width: 180px;
             height: 180px;
+        }
+
+        .container.modo-resultados .logo {
+            left: 0;
+            right: auto;
+            transform: none;
+            top: -25px;
+            background-position: left bottom;
+            width: 200px;
+        }
+
+        .container.modo-resultados {
+            margin-top: 25px !important;
+            transition: margin-top 0.6s ease;
         }
 
         @media (max-width: 768px) {
@@ -96,20 +112,6 @@
                 margin-top: 60px;
                 padding: 24px 16px;
             }
-        }
-
-        .container.modo-resultados .logo {
-            left: 0;
-            right: auto;
-            transform: none;
-            top: -25px;
-            background-position: left bottom;
-            width: 200px;
-        }
-
-        .container.modo-resultados {
-            margin-top: 25px !important;
-            transition: margin-top 0.6s ease;
         }
 
         .screen {
@@ -139,7 +141,7 @@
         .subtitle {
             color: #666;
             text-align: center;
-            margin-bottom: 32px;
+            margin-bottom: 24px;
         }
 
         .intro-content {
@@ -165,7 +167,17 @@
         }
 
         .intro-box li {
-            margin: 10px 0;
+            margin: 8px 0;
+        }
+
+        .notice {
+            background: #eff6ff;
+            border-radius: 8px;
+            padding: 12px 14px;
+            margin-top: 8px;
+            font-size: 14px;
+            border: 1px solid #bfdbfe;
+            color: #1d4ed8;
         }
 
         .btn {
@@ -176,13 +188,14 @@
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            transition: opacity 0.3s;
+            transition: opacity 0.3s, transform 0.15s;
             color: white;
             background-color: #020f27;
         }
 
         .btn:hover:not(:disabled) {
             opacity: 0.9;
+            transform: translateY(-1px);
         }
 
         .btn-secondary {
@@ -197,6 +210,18 @@
             flex: 1;
         }
 
+        .btn-ghost {
+            background: #e5e7eb;
+            color: #020f27;
+            flex: 0 0 auto;
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
         .header {
             display: flex;
             justify-content: flex-end;
@@ -207,13 +232,64 @@
             background: #f5f5f5;
             padding: 8px 18px;
             border-radius: 8px;
-            font-size: 1.3em;
+            font-size: 1.1em;
             font-weight: bold;
             color: #020f27;
             border: 2px solid #0b4a6e;
-            float: right;
         }
 
+        .timer-over {
+            background: #fee2e2;
+            border-color: #fecaca;
+            color: #b91c1c;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+            color: #374151;
+            font-weight: 600;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        .field-help {
+            font-size: 12px;
+            color: #6b7280;
+            margin-bottom: 4px;
+        }
+
+        .input {
+            width: 100%;
+            padding: 10px 12px;
+            font-size: 14px;
+            border: 2px solid #0b4a6e;
+            border-radius: 8px;
+            margin-bottom: 4px;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .input:focus {
+            border-color: #020f27;
+            box-shadow: 0 0 0 2px rgba(2, 15, 39, 0.2);
+        }
+
+        .input-error {
+            border-color: #b91c1c !important;
+            box-shadow: 0 0 0 2px rgba(185, 28, 28, 0.2);
+        }
+
+        .error-text {
+            font-size: 12px;
+            color: #b91c1c;
+            margin-bottom: 4px;
+        }
+
+        /* === SECUENCIA DE FICHAS === */
         .domino-sequence {
             display: flex;
             justify-content: center;
@@ -329,6 +405,11 @@
             animation: dotAppear 0.4s ease-out backwards;
         }
 
+        .domino-small .dot {
+            width: 9px;
+            height: 9px;
+        }
+
         @keyframes dotAppear {
             from {
                 transform: scale(0);
@@ -339,11 +420,6 @@
                 transform: scale(1);
                 opacity: 1;
             }
-        }
-
-        .domino-small .dot {
-            width: 9px;
-            height: 9px;
         }
 
         .question-mark {
@@ -367,11 +443,12 @@
             }
         }
 
+        /* === OPCIONES === */
         .options-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
             gap: 18px;
-            margin: 25px 0;
+            margin: 20px 0 10px;
         }
 
         .option-btn {
@@ -437,7 +514,6 @@
             }
         }
 
-        /* Animación de aparición de opciones */
         .option-btn {
             animation: optionFadeIn 0.5s ease-out backwards;
         }
@@ -481,9 +557,19 @@
         .navigation {
             display: flex;
             gap: 15px;
-            margin-top: 25px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            justify-content: space-between;
         }
 
+        .nav-left,
+        .nav-right {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        /* === RESULTADOS PRNF-FM === */
         .results-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -492,10 +578,10 @@
         }
 
         .result-card {
-            padding: 24px;
+            padding: 18px 20px;
             border-radius: 12px;
-            text-align: center;
             border: 1px solid #e5e7eb;
+            background: #f9fafb;
         }
 
         .result-card.green {
@@ -510,88 +596,132 @@
             background: #f0f4ff;
         }
 
-        .result-number {
-            font-size: 2.8em;
-            font-weight: bold;
-            margin: 10px 0;
-        }
-
-        .form-group {
-            margin-bottom: 24px;
-        }
-
-        label {
-            display: block;
-            color: #374151;
+        .result-title {
+            font-size: 14px;
             font-weight: 600;
-            margin-bottom: 8px;
+            color: #374151;
+            margin-bottom: 4px;
         }
 
-        .email-input {
-            width: 100%;
-            padding: 12px 16px;
-            font-size: 1em;
-            border: 2px solid #0b4a6e;
-            border-radius: 8px;
-            margin-bottom: 15px;
+        .result-number {
+            font-size: 2.2em;
+            font-weight: bold;
+            margin: 4px 0 4px;
+            color: #020f27;
         }
 
-        .loading-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 9999;
-            justify-content: center;
+        .result-sub {
+            font-size: 13px;
+            color: #4b5563;
+        }
+
+        .result-tag {
+            display: inline-flex;
             align-items: center;
+            justify-content: center;
+            border-radius: 999px;
+            padding: 2px 8px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-right: 4px;
         }
 
-        .loading-overlay.active {
+        .result-tag-good {
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .result-tag-warn {
+            background: #fef9c3;
+            color: #854d0e;
+        }
+
+        .result-tag-info {
+            background: #e0f2fe;
+            color: #0369a1;
+        }
+
+        .block-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+            margin-top: 6px;
+        }
+
+        .block-table th,
+        .block-table td {
+            padding: 4px 6px;
+            border-bottom: 1px solid #e5e7eb;
+            text-align: left;
+        }
+
+        .block-table th {
+            font-weight: 600;
+            color: #4b5563;
+        }
+
+        .results-note {
+            font-size: 12px;
+            color: #6b7280;
+            margin-top: 6px;
+        }
+
+        /* === MODAL GENÉRICO === */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.65);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .modal-overlay.active {
             display: flex;
         }
 
-        .loading-content {
+        .modal {
             background: white;
-            padding: 40px;
-            border-radius: 12px;
-            text-align: center;
+            padding: 20px 20px 16px;
+            border-radius: 14px;
+            max-width: 420px;
+            width: 100%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
         }
 
-        .spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #020f27;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
+        .modal-title {
+            color: #020f27;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 6px;
         }
 
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
+        .modal-body {
+            font-size: 14px;
+            color: #374151;
+            margin-bottom: 16px;
+            line-height: 1.5;
         }
-    </style>
-</head>
 
-<body>
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
 
-    <a href="../../usuarios.html" class="btn-back">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M15 18l-6-6 6-6"/>
-        </svg>
-        Volver a Usuarios
-    </a>
-
-    <style>
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
         .btn-back {
             position: fixed;
             top: 20px;
@@ -641,125 +771,171 @@
         @media print {
             .btn-back { display: none !important; }
         }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
     </style>
+</head>
 
-    <!-- Loading Overlay -->
-    <div class="loading-overlay" id="loading-overlay">
-        <div class="loading-content">
-            <div class="spinner"></div>
-            <h3 style="color: #020f27; margin-bottom: 10px;">Guardando resultados...</h3>
-            <p style="color: #666;">Por favor espera un momento</p>
-        </div>
-    </div>
-
-    <div class="container">
+<body>
+    <a href="../../usuarios.html" class="btn-back">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 18l-6-6 6-6" />
+        </svg>
+        Volver a Usuarios
+    </a>
+    <div class="container" id="main-container">
         <div class="logo"></div>
 
         <!-- PANTALLA DE REGISTRO -->
-        <div id="registration-screen" class="screen active" style="max-width: 500px; margin: 0 auto;">
-            <h1>Test de Dominó D-48</h1>
-            <p class="subtitle">Test de Inteligencia No Verbal - Edgar Anstey</p>
+        <section id="screen-registration" class="screen active" style="max-width: 500px; margin: 0 auto;">
+            <h1>PRNF-FM</h1>
+            <p class="subtitle">Prueba de Razonamiento No Verbal con Fichas Modulares</p>
 
-            <div style="margin-top: 32px;">
+            <div style="margin-top: 16px;">
                 <div class="form-group">
-                    <label>👤 Nombre</label>
-                    <input type="text" id="user-name-register" class="email-input" placeholder="Ingresa tu nombre"
-                        required>
+                    <label for="user-name">👤 Nombre</label>
+                    <input type="text" id="user-name" class="input" placeholder="Ingresa tu nombre" />
+                    <p id="user-name-error" class="error-text" style="display:none;"></p>
                 </div>
 
                 <div class="form-group">
-                    <label>👤 Apellido</label>
-                    <input type="text" id="user-lastname-register" class="email-input" placeholder="Ingresa tu apellido"
-                        required>
+                    <label for="user-lastname">👤 Apellido</label>
+                    <input type="text" id="user-lastname" class="input" placeholder="Ingresa tu apellido" />
+                    <p id="user-lastname-error" class="error-text" style="display:none;"></p>
                 </div>
 
                 <div class="form-group">
-                    <label>✉️ Email</label>
-                    <input type="email" id="user-email-register" class="email-input" placeholder="tu.email@ejemplo.com"
-                        required>
+                    <label for="user-email">✉️ Email</label>
+
+                    <input type="email" id="user-email" class="input" placeholder="tu.email@ejemplo.com" />
+                    <p id="user-email-error" class="error-text" style="display:none;"></p>
                 </div>
 
-                <button class="btn" onclick="showInstructions()">Continuar</button>
+
+
+                <button class="btn" id="btn-go-instructions">Continuar</button>
 
                 <div class="intro-box" style="margin-top: 24px;">
-                    <p><strong>Información:</strong> Escencial Consultora<br>
-                        Catamarca 873 - San Miguel de Tucumán<br>
-                        Tel: +54 9 3816 22-1565</p>
+                    <h3>Resumen técnico</h3>
+                    <ul>
+                        <li>Duración estimada: 20–25 minutos.</li>
+                        <li>Número de ítems: 40.</li>
+                        <li>Formato: selección de la ficha que completa la secuencia.</li>
+                    </ul>
                 </div>
             </div>
-        </div>
+        </section>
 
         <!-- PANTALLA DE INSTRUCCIONES -->
-        <div id="intro-screen" class="screen">
-            <h1>Test de Dominó D-48</h1>
-            <p class="subtitle" id="participant-name"></p>
+        <section id="screen-instructions" class="screen">
+            <h1>PRNF-FM</h1>
+            <p class="subtitle" id="participant-label"></p>
+
             <div class="intro-content">
-                <p style="font-size: 1em; margin-bottom: 20px; color: #374151;">
-                    El Test de Dominó D-48 es una prueba de <strong>inteligencia no verbal</strong> que evalúa tu
-                    capacidad de razonamiento lógico, abstracción y comprensión de patrones.
+                <p style="font-size: 1em; margin-bottom: 16px; color: #374151;">
+                    Esta prueba evalúa tu capacidad para descubrir reglas en secuencias visuales y aplicarlas a nuevos
+                    estímulos,
+                    sin depender del lenguaje.
                 </p>
                 <div class="intro-box">
                     <h3>Instrucciones:</h3>
                     <ul>
-                        <li>Se te presentarán 48 secuencias de fichas de dominó</li>
-                        <li>Cada secuencia tiene un patrón lógico que debes descubrir</li>
-                        <li>Debes seleccionar qué ficha completa correctamente la secuencia</li>
-                        <li>Tienes <strong>30 minutos</strong> para completar las 48 preguntas</li>
-                        <li>La dificultad aumenta progresivamente</li>
-                        <li>Puedes navegar entre preguntas con los botones "Anterior" y "Siguiente"</li>
+                        <li>Verás <strong>fichas tipo dominó</strong> organizadas en una secuencia.</li>
+                        <li>Al final habrá un espacio vacío (signo de interrogación).</li>
+                        <li>Debes elegir, entre las 6 opciones, la ficha que completa correctamente la secuencia.</li>
+                        <li>La prueba tiene <strong>40 ítems</strong> y un límite de <strong>25 minutos</strong>.</li>
+                        <li>La dificultad aumenta: ítems básicos, luego medios y finalmente avanzados.</li>
+                        <li>No se dan ejemplos de solución y no se aclararán las reglas de cada ejercicio.</li>
                     </ul>
                 </div>
-                <button class="btn" onclick="startTest()">Comenzar Test</button>
+                <div class="notice">
+                    Una vez que comiences, el tiempo <strong>no se detendrá</strong>. Asegúrate de estar en un lugar
+                    tranquilo
+                    y sin interrupciones.
+                </div>
+                <div style="margin-top: 20px; display:flex; gap:10px; flex-wrap:wrap;">
+                    <button class="btn-secondary btn" id="btn-back-registration" style="flex:1;">Volver</button>
+                    <button class="btn" id="btn-start-test" style="flex:1;">Comenzar prueba</button>
+                </div>
             </div>
-        </div>
+        </section>
 
         <!-- PANTALLA DEL TEST -->
-        <div id="test-screen" class="screen">
-            <div style="padding-right: 10px; margin-bottom: 20px;">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
+        <section id="screen-test" class="screen">
+            <div style="padding-right: 10px; margin-bottom: 16px;">
+                <div
+                    style="display: flex; justify-content: space-between; align-items: center; gap:8px; flex-wrap:wrap;">
                     <div class="question-info">
-                        <span id="question-number">Pregunta 1 de 48</span>
+                        <span id="question-number">Ítem 1 de 40</span>
                     </div>
-                    <div class="timer" id="timer">30:00</div>
+                    <div class="timer" id="timer">25:00</div>
                 </div>
-                <h2 style="margin-top: 20px;">¿Qué ficha continúa la secuencia?</h2>
+                <h2 style="margin-top: 16px;">¿Qué ficha continúa la secuencia?</h2>
             </div>
 
             <div class="domino-sequence" id="sequence-container"></div>
-            <h3 style="margin-top: 30px; color: #374151; font-weight: 600;">Selecciona tu respuesta:</h3>
+
+            <h3 style="margin-top: 10px; color: #374151; font-weight: 600;">
+                Selecciona tu respuesta:
+            </h3>
             <div class="options-grid" id="options-container"></div>
 
             <div class="navigation">
-                <button class="btn btn-secondary" id="prev-btn" onclick="prevQuestion()">Anterior</button>
-                <button class="btn" id="next-btn" onclick="nextQuestion()">Siguiente</button>
-                <button class="btn btn-success" id="finish-btn" onclick="finishTest()" style="display: none;">Finalizar
-                    Test</button>
+                <div class="nav-left">
+                    <button class="btn btn-secondary" id="btn-prev">Anterior</button>
+                </div>
+                <div class="nav-right">
+                    <button class="btn btn-ghost" id="btn-summary-mini" type="button">Resumen rápido</button>
+                    <button class="btn btn-success" id="btn-finish" type="button">Finalizar prueba</button>
+                </div>
             </div>
-        </div>
+        </section>
 
         <!-- PANTALLA DE RESULTADOS -->
-        <div id="results-screen" class="screen">
-            <h1>Resultados del Test</h1>
-            <p class="subtitle" id="result-user-info"></p>
+        <section id="screen-results" class="screen">
+            <h1>PRNF-FM</h1>
+            <p class="subtitle" id="results-participant"></p>
 
-            <div class="results-grid">
-                <div class="result-card green">
-                    <h3 style="color: #059669;">Correctas</h3>
-                    <div class="result-number" id="correct-count">0</div>
-                </div>
-                <div class="result-card purple">
-                    <h3 style="color: #020f27;">Percentil</h3>
-                    <div class="result-number" id="percentile-score">0</div>
-                    <p><strong id="level-description">-</strong></p>
-                </div>
+            <div class="intro-box">
+                <h3>Resultados enviados</h3>
+                <p id="results-message">
+                    Tus respuestas han sido registradas y los resultados se han enviado correctamente
+                    al profesional a cargo de la evaluación.
+                </p>
             </div>
 
-            <div class="intro-box" style="text-align: center;">
-                <p style="color: #059669; font-weight: 600;">✓ Tus resultados han sido guardados exitosamente</p>
-                <p style="color: #374151;">Participante: <strong id="saved-name"></strong></p>
-                <p style="color: #374151;">Email: <strong id="saved-email"></strong></p>
+            <p class="results-note">
+                Si tienes dudas sobre tu evaluación, contacta a la persona o institución que te proporcionó este enlace.
+            </p>
+
+            <div style="margin-top: 20px; text-align:center;">
+                <a href="../../usuarios.html" class="btn" style="max-width: 260px; display:inline-block;">
+                    Volver
+                </a>
             </div>
-            <button class="btn" onclick="restartTest()">Realizar Nuevo Test</button>
+        </section>
+
+    </div>
+
+    <!-- MODAL GENÉRICO -->
+    <div class="modal-overlay" id="modal-overlay" aria-hidden="true">
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-body">
+            <h2 id="modal-title" class="modal-title">Confirmar acción</h2>
+            <p id="modal-body" class="modal-body"></p>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" id="modal-cancel" type="button">Cancelar</button>
+                <button class="btn btn-success" id="modal-confirm" type="button">Continuar</button>
+            </div>
         </div>
     </div>
 
@@ -771,143 +947,285 @@
                 window.location.href = '../../evaluaciones.html'; // o donde esté tu login/panel
             }
         })();
-        // === CONFIGURACIÓN ===
-        const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzu75VHnTqYyz0SGB6LfvfpF5oXp4NVED3ixnmukDZruMHB45Dhvfx9eTfpfWYielqpGA/exec';
+        // ========================
+        // CONFIGURACIÓN
+        // ========================
+        const TOTAL_ITEMS = 40;
+        const MAX_TIME_SECONDS = 25 * 60; // 25 minutos
 
-        // === EJEMPLOS DE PRÁCTICA (NO SE CUENTAN) ===
-        const practiceProblems = [
+        // URL de Apps Script que guarda en la hoja "Domino D48"
+        const SAVE_RESULTS_URL =
+            "https://script.google.com/macros/s/AKfycbzu75VHnTqYyz0SGB6LfvfpF5oXp4NVED3ixnmukDZruMHB45Dhvfx9eTfpfWYielqpGA/exec";
+
+        // ========================
+        // ÍTEMS
+        // ========================
+        const ITEMS = [
+            // ----- BLOQUE A: 1–10 (básico) -----
             {
-                sequence: [[1, 1], [2, 2], [3, 3]],
-                answer: [4, 4],
-                options: [[4, 4], [3, 4], [4, 3], [5, 5], [3, 3], [2, 2]],
-                explanation: "Cada ficha aumenta en 1 tanto arriba como abajo. La secuencia es: 1-1, 2-2, 3-3, entonces sigue 4-4."
+                sequence: [[0, 0], [1, 1], [2, 2]], answer: [3, 3],
+                options: [[3, 3], [3, 2], [2, 3], [4, 4], [1, 3], [0, 2]]
             },
             {
-                sequence: [[6, 0], [5, 1], [4, 2]],
-                answer: [3, 3],
-                options: [[3, 3], [2, 4], [4, 2], [3, 4], [2, 3], [4, 3]],
-                explanation: "La parte superior disminuye en 1 (6→5→4→3) y la inferior aumenta en 1 (0→1→2→3). Por lo tanto, la respuesta es 3-3."
+                sequence: [[1, 2], [2, 3], [3, 4]], answer: [4, 5],
+                options: [[4, 5], [5, 4], [3, 5], [5, 6], [4, 4], [2, 4]]
+            },
+            {
+                sequence: [[6, 6], [5, 5], [4, 4]], answer: [3, 3],
+                options: [[3, 3], [2, 2], [4, 3], [3, 4], [2, 3], [6, 5]]
+            },
+            {
+                sequence: [[0, 1], [1, 2], [2, 3]], answer: [3, 4],
+                options: [[3, 4], [4, 5], [4, 3], [2, 4], [1, 3], [3, 3]]
+            },
+            {
+                sequence: [[0, 6], [1, 5], [2, 4]], answer: [3, 3],
+                options: [[3, 3], [4, 2], [5, 1], [2, 3], [3, 4], [0, 3]]
+            },
+            {
+                sequence: [[0, 0], [1, 0], [2, 0]], answer: [3, 0],
+                options: [[3, 0], [4, 0], [3, 1], [2, 1], [0, 2], [1, 2]]
+            },
+            {
+                sequence: [[6, 0], [5, 1], [4, 2]], answer: [3, 3],
+                options: [[3, 3], [2, 4], [3, 2], [4, 3], [5, 2], [1, 3]]
+            },
+            {
+                sequence: [[0, 3], [1, 4], [2, 5]], answer: [3, 6],
+                options: [[3, 6], [4, 0], [2, 6], [4, 5], [1, 5], [0, 4]]
+            },
+            {
+                sequence: [[1, 3], [2, 4], [3, 5]], answer: [4, 6],
+                options: [[4, 6], [5, 0], [3, 6], [5, 4], [4, 5], [2, 3]]
+            },
+            {
+                sequence: [[0, 1], [0, 2], [1, 2]], answer: [1, 3],
+                options: [[1, 3], [2, 3], [0, 3], [2, 4], [1, 4], [3, 3]]
+            },
+
+            // ----- BLOQUE B: 11–25 (medio) -----
+            {
+                sequence: [[0, 0], [0, 1], [1, 1]], answer: [1, 2],
+                options: [[1, 2], [2, 2], [0, 2], [2, 3], [1, 3], [3, 3]]
+            },
+            {
+                sequence: [[0, 1], [1, 0], [1, 2]], answer: [2, 1],
+                options: [[2, 1], [2, 3], [3, 2], [0, 2], [2, 0], [3, 1]]
+            },
+            {
+                sequence: [[1, 2], [1, 3], [2, 3]], answer: [2, 4],
+                options: [[2, 4], [3, 4], [3, 5], [1, 4], [2, 5], [4, 4]]
+            },
+            {
+                sequence: [[0, 2], [0, 3], [1, 3]], answer: [1, 4],
+                options: [[1, 4], [2, 4], [2, 5], [0, 4], [2, 3], [1, 5]]
+            },
+            {
+                sequence: [[0, 4], [0, 5], [1, 5]], answer: [1, 6],
+                options: [[1, 6], [2, 6], [2, 0], [0, 6], [2, 5], [1, 0]]
+            },
+            {
+                sequence: [[1, 6], [6, 2], [2, 5]], answer: [5, 3],
+                options: [[5, 3], [3, 4], [4, 0], [0, 5], [3, 5], [4, 3]]
+            },
+            {
+                sequence: [[0, 0], [1, 1], [2, 2]], answer: [3, 3],
+                options: [[3, 3], [4, 4], [5, 5], [0, 1], [1, 0], [2, 3]]
+            },
+            {
+                sequence: [[6, 6], [5, 6], [5, 5]], answer: [4, 5],
+                options: [[4, 5], [4, 4], [3, 4], [3, 3], [2, 3], [2, 2]]
+            },
+            {
+                sequence: [[0, 1], [2, 3], [4, 5]], answer: [6, 0],
+                options: [[6, 0], [1, 2], [3, 4], [5, 6], [0, 2], [2, 0]]
+            },
+            {
+                sequence: [[0, 0], [1, 2], [2, 4]], answer: [3, 6],
+                options: [[3, 6], [4, 1], [5, 3], [4, 2], [6, 5], [1, 3]]
+            },
+            {
+                sequence: [[6, 6], [5, 4], [4, 2]], answer: [3, 0],
+                options: [[3, 0], [2, 5], [1, 3], [0, 1], [2, 4], [1, 4]]
+            },
+            {
+                sequence: [[0, 0], [1, 3], [2, 6]], answer: [3, 2],
+                options: [[3, 2], [4, 5], [5, 1], [6, 4], [4, 6], [5, 0]]
+            },
+            {
+                sequence: [[0, 1], [3, 0], [6, 5]], answer: [2, 4],
+                options: [[2, 4], [5, 3], [1, 2], [4, 1], [0, 6], [3, 2]]
+            },
+            {
+                sequence: [[0, 0], [0, 1], [1, 3]], answer: [3, 6],
+                options: [[3, 6], [6, 2], [2, 5], [5, 1], [0, 4], [4, 0]]
+            },
+
+            // ----- BLOQUE C: 26–40 (avanzado) -----
+            {
+                sequence: [[0, 0], [0, 2], [2, 6]], answer: [6, 5],
+                options: [[6, 5], [5, 1], [1, 4], [4, 0], [3, 6], [6, 2]]
+            },
+            {
+                sequence: [[0, 0], [1, 0], [2, 1]], answer: [3, 3],
+                options: [[3, 3], [4, 6], [5, 2], [6, 5], [4, 5], [2, 2]]
+            },
+            {
+                sequence: [[0, 0], [1, 2], [3, 5]], answer: [6, 3],
+                options: [[6, 3], [2, 0], [5, 6], [4, 1], [0, 4], [1, 3]]
+            },
+            {
+                sequence: [[0, 0], [2, 0], [4, 1]], answer: [0, 3],
+                options: [[0, 3], [2, 6], [4, 5], [6, 4], [0, 2], [1, 4]]
+            },
+            {
+                sequence: [[0, 0], [3, 0], [6, 1]], answer: [2, 3],
+                options: [[2, 3], [5, 6], [1, 2], [4, 5], [0, 5], [3, 4]]
+            },
+            {
+                sequence: [[0, 1], [2, 3], [4, 5]], answer: [6, 1],
+                options: [[6, 1], [0, 3], [2, 5], [4, 0], [1, 4], [3, 6]]
+            },
+            {
+                sequence: [[0, 0], [1, 2], [3, 4]], answer: [5, 6],
+                options: [[5, 6], [1, 1], [2, 2], [3, 3], [4, 4], [6, 6]]
+            },
+            {
+                sequence: [[0, 1], [1, 3], [3, 5]], answer: [5, 1],
+                options: [[5, 1], [1, 3], [3, 5], [0, 2], [2, 4], [4, 6]]
+            },
+            {
+                sequence: [[0, 0], [0, 1], [1, 2]], answer: [3, 0],
+                options: [[3, 0], [4, 1], [5, 2], [6, 3], [0, 2], [1, 3]]
+            },
+            {
+                sequence: [[0, 0], [1, 1], [2, 3]], answer: [4, 6],
+                options: [[4, 6], [0, 3], [1, 4], [2, 5], [3, 6], [4, 0]]
+            },
+            {
+                sequence: [[0, 0], [1, 2], [2, 5]], answer: [4, 3],
+                options: [[4, 3], [6, 1], [0, 4], [1, 6], [3, 0], [5, 2]]
+            },
+            {
+                sequence: [[0, 0], [2, 1], [4, 3]], answer: [0, 6],
+                options: [[0, 6], [2, 2], [4, 4], [6, 6], [1, 3], [3, 5]]
+            },
+            {
+                sequence: [[0, 0], [3, 1], [6, 3]], answer: [2, 6],
+                options: [[2, 6], [5, 2], [1, 5], [4, 1], [0, 4], [3, 0]]
+            },
+            {
+                sequence: [[0, 0], [0, 1], [2, 0]], answer: [1, 3],
+                options: [[1, 3], [3, 2], [5, 1], [4, 0], [0, 4], [2, 6]]
+            },
+            {
+                sequence: [[0, 0], [1, 2], [0, 4]], answer: [2, 6],
+                options: [[2, 6], [1, 1], [3, 3], [5, 5], [0, 3], [4, 0]]
             }
         ];
 
-        // === LISTA COMPLETA DE LOS 48 PROBLEMAS REALES ===
-        const problems = [
-            // P1
-            { sequence: [[1, 2], [2, 3], [3, 4], [4, 5]], answer: [5, 6], options: [[5, 6], [4, 6], [5, 5], [6, 6], [4, 5], [6, 0]] },
-            // P2
-            { sequence: [[6, 6], [5, 5], [4, 4], [3, 3]], answer: [2, 2], options: [[2, 2], [3, 2], [1, 1], [2, 3], [3, 3], [1, 2]] },
-            // P3
-            { sequence: [[1, 1], [2, 2], [3, 3], [4, 4]], answer: [5, 5], options: [[5, 5], [4, 5], [5, 4], [6, 6], [4, 6], [5, 6]] },
-            // P4
-            { sequence: [[0, 6], [1, 5], [2, 4], [3, 3]], answer: [4, 2], options: [[4, 2], [5, 1], [4, 3], [3, 4], [2, 5], [5, 2]] },
-            // P5
-            { sequence: [[0, 4], [2, 2], [4, 0], [6, 5]], answer: [1, 3], options: [[1, 3], [3, 1], [2, 6], [1, 4], [0, 2], [2, 5]] },
-            // P6
-            { sequence: [[0, 0], [1, 0], [2, 0], [3, 0]], answer: [4, 0], options: [[4, 0], [5, 0], [3, 1], [4, 1], [0, 5], [0, 6]] },
-            // P7
-            { sequence: [[6, 5], [5, 4], [4, 3], [3, 2]], answer: [2, 1], options: [[2, 1], [1, 0], [2, 0], [3, 1], [1, 2], [3, 0]] },
-            // P8
-            { sequence: [[0, 1], [1, 2], [2, 3], [3, 4]], answer: [4, 5], options: [[4, 5], [5, 6], [4, 6], [3, 5], [5, 4], [6, 5]] },
-            // P9
-            { sequence: [[0, 6], [6, 1], [1, 5], [5, 2]], answer: [2, 4], options: [[2, 4], [4, 3], [3, 2], [4, 5], [5, 3], [3, 1]] },
-            // P10
-            { sequence: [[0, 3], [1, 4], [2, 5], [3, 6]], answer: [4, 0], options: [[4, 0], [5, 1], [4, 1], [5, 0], [0, 5], [1, 6]] },
-            // P11
-            { sequence: [[1, 3], [2, 4], [3, 5], [4, 6]], answer: [5, 0], options: [[5, 0], [6, 1], [5, 1], [0, 6], [6, 0], [0, 1]] },
-            // P12
-            { sequence: [[1, 4], [2, 5], [3, 6], [4, 0]], answer: [5, 1], options: [[5, 1], [6, 2], [5, 2], [0, 6], [6, 1], [0, 2]] },
-            // P13
-            { sequence: [[0, 1], [0, 2], [1, 1], [1, 2]], answer: [2, 1], options: [[2, 1], [2, 2], [0, 3], [1, 3], [3, 1], [3, 2]] },
-            // P14
-            { sequence: [[0, 0], [0, 1], [1, 1], [1, 2]], answer: [2, 2], options: [[2, 2], [2, 3], [0, 3], [1, 3], [3, 2], [3, 3]] },
-            // P15
-            { sequence: [[0, 1], [1, 0], [1, 2], [2, 1]], answer: [2, 3], options: [[2, 3], [3, 2], [3, 4], [4, 3], [0, 2], [2, 0]] },
-            // P16
-            { sequence: [[1, 2], [1, 3], [2, 3], [2, 4]], answer: [3, 4], options: [[3, 4], [3, 5], [4, 5], [4, 6], [5, 6], [0, 3]] },
-            // P17
-            { sequence: [[0, 2], [0, 3], [1, 3], [1, 4]], answer: [2, 4], options: [[2, 4], [2, 5], [3, 5], [3, 6], [4, 6], [0, 4]] },
-            // P18
-            { sequence: [[0, 4], [0, 5], [1, 5], [1, 6]], answer: [2, 6], options: [[2, 6], [2, 0], [3, 0], [3, 1], [4, 1], [0, 6]] },
-            // P19
-            { sequence: [[1, 6], [6, 2], [2, 5], [5, 3]], answer: [3, 4], options: [[3, 4], [4, 0], [0, 4], [4, 5], [5, 0], [0, 5]] },
-            // P20
-            { sequence: [[0, 0], [1, 1], [2, 2], [3, 3]], answer: [4, 4], options: [[4, 4], [5, 5], [6, 6], [0, 1], [1, 0], [4, 5]] },
-            // P21
-            { sequence: [[6, 6], [5, 6], [5, 5], [4, 5]], answer: [4, 4], options: [[4, 4], [3, 4], [3, 3], [2, 3], [2, 2], [4, 3]] },
-            // P22
-            { sequence: [[0, 1], [2, 3], [4, 5], [6, 0]], answer: [1, 2], options: [[1, 2], [3, 4], [5, 6], [0, 2], [2, 0], [6, 1]] },
-            // P23
-            { sequence: [[0, 0], [1, 2], [2, 4], [3, 6]], answer: [4, 1], options: [[4, 1], [5, 3], [6, 5], [4, 2], [5, 2], [6, 1]] },
-            // P24
-            { sequence: [[6, 6], [5, 4], [4, 2], [3, 0]], answer: [2, 5], options: [[2, 5], [1, 3], [0, 1], [2, 4], [1, 4], [0, 3]] },
-            // P25
-            { sequence: [[0, 0], [1, 3], [2, 6], [3, 2]], answer: [4, 5], options: [[4, 5], [5, 1], [6, 4], [4, 6], [5, 0], [6, 1]] },
-            // P26
-            { sequence: [[0, 1], [3, 0], [6, 5], [2, 4]], answer: [5, 3], options: [[5, 3], [1, 2], [4, 1], [0, 6], [3, 2], [6, 0]] },
-            // P27
-            { sequence: [[0, 0], [0, 1], [1, 3], [3, 6]], answer: [6, 2], options: [[6, 2], [2, 5], [5, 1], [0, 4], [4, 0], [1, 5]] },
-            // P28
-            { sequence: [[0, 0], [0, 2], [2, 6], [6, 5]], answer: [5, 1], options: [[5, 1], [1, 4], [4, 0], [0, 3], [3, 6], [6, 2]] },
-            // P29
-            { sequence: [[0, 0], [1, 0], [2, 1], [3, 3]], answer: [4, 6], options: [[4, 6], [5, 2], [6, 5], [4, 5], [5, 4], [6, 3]] },
-            // P30
-            { sequence: [[0, 0], [1, 2], [3, 5], [6, 3]], answer: [2, 0], options: [[2, 0], [5, 6], [4, 1], [0, 4], [1, 3], [3, 0]] },
-            // P31
-            { sequence: [[0, 0], [2, 0], [4, 1], [0, 3]], answer: [2, 6], options: [[2, 6], [4, 5], [6, 4], [0, 2], [1, 4], [3, 5]] },
-            // P32
-            { sequence: [[0, 0], [3, 0], [6, 1], [2, 3]], answer: [5, 6], options: [[5, 6], [1, 2], [4, 5], [0, 5], [3, 4], [6, 3]] },
-            // P33
-            { sequence: [[0, 1], [2, 3], [4, 5], [6, 1]], answer: [0, 3], options: [[0, 3], [2, 5], [4, 0], [6, 2], [1, 4], [3, 6]] },
-            // P34
-            { sequence: [[0, 0], [1, 2], [3, 4], [5, 6]], answer: [1, 1], options: [[1, 1], [2, 2], [3, 3], [4, 4], [5, 5], [6, 6]] },
-            // P35
-            { sequence: [[0, 1], [1, 3], [3, 5], [5, 1]], answer: [1, 3], options: [[1, 3], [3, 5], [5, 1], [0, 2], [2, 4], [4, 6]] },
-            // P36
-            { sequence: [[0, 0], [0, 1], [1, 2], [3, 0]], answer: [4, 1], options: [[4, 1], [5, 2], [6, 3], [0, 2], [1, 3], [2, 4]] },
-            // P37
-            { sequence: [[0, 0], [1, 1], [2, 3], [4, 6]], answer: [0, 3], options: [[0, 3], [1, 4], [2, 5], [3, 6], [4, 0], [5, 1]] },
-            // P38
-            { sequence: [[0, 0], [1, 2], [2, 5], [4, 3]], answer: [6, 1], options: [[6, 1], [0, 4], [1, 6], [3, 0], [5, 2], [6, 4]] },
-            // P39
-            { sequence: [[0, 0], [2, 1], [4, 3], [0, 6]], answer: [2, 2], options: [[2, 2], [4, 4], [6, 6], [1, 3], [3, 5], [5, 1]] },
-            // P40
-            { sequence: [[0, 0], [3, 1], [6, 3], [2, 6]], answer: [5, 2], options: [[5, 2], [1, 5], [4, 1], [0, 4], [3, 0], [6, 3]] },
-            // P41
-            { sequence: [[0, 0], [0, 1], [2, 0], [1, 3]], answer: [3, 2], options: [[3, 2], [5, 1], [4, 0], [0, 4], [2, 6], [6, 5]] },
-            // P42
-            { sequence: [[0, 0], [1, 2], [0, 4], [2, 6]], answer: [1, 1], options: [[1, 1], [3, 3], [5, 5], [0, 3], [2, 5], [4, 0]] },
-            // P43
-            { sequence: [[0, 0], [0, 2], [1, 4], [3, 0]], answer: [5, 2], options: [[5, 2], [1, 6], [4, 5], [0, 1], [2, 3], [6, 4]] },
-            // P44
-            { sequence: [[0, 0], [1, 3], [3, 6], [6, 4]], answer: [2, 1], options: [[2, 1], [5, 3], [1, 5], [4, 0], [0, 2], [3, 5]] },
-            // P45
-            { sequence: [[0, 0], [1, 2], [3, 5], [6, 0]], answer: [2, 4], options: [[2, 4], [5, 3], [1, 6], [4, 2], [0, 1], [3, 0]] },
-            // P46
-            { sequence: [[0, 0], [0, 3], [1, 6], [4, 2]], answer: [0, 5], options: [[0, 5], [3, 1], [6, 4], [2, 0], [5, 3], [1, 6]] },
-            // P47
-            { sequence: [[0, 0], [1, 4], [3, 2], [6, 1]], answer: [5, 6], options: [[5, 6], [4, 3], [2, 5], [0, 2], [3, 4], [1, 0]] },
-            // P48
-            { sequence: [[0, 0], [2, 4], [4, 1], [1, 5]], answer: [5, 0], options: [[5, 0], [3, 6], [6, 3], [0, 6], [2, 1], [4, 3]] }
-        ];
+        // ========================
+        // ESTADO GLOBAL
+        // ========================
+        let currentIndex = 0;
+        let answers = new Array(TOTAL_ITEMS).fill(null); // índice de opción elegida (0-5)
+        let shuffledOptions = {}; // por ítem: array de {tile, index}
+        let timeLeft = MAX_TIME_SECONDS;
+        let timerId = null;
 
-        let currentQuestion = 0;
-        let answers = {};
-        let timeLeft = 1800; // 30 minutos
-        let timerInterval;
-        let shuffledOptions = {};
-        let userName = '';
-        let userLastName = '';
-        let userEmail = '';
-        let isPracticeMode = true; // Control del modo práctica
-        let currentPracticeQuestion = 0; // Pregunta actual en modo práctica
+        const participant = {
+            name: "",
+            lastname: "",
+            email: "",
+
+        };
+
+        // ========================
+        // UTILIDADES BÁSICAS
+        // ========================
+        function $(id) {
+            return document.getElementById(id);
+        }
+
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = seconds % 60;
+            return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+        }
 
         function shuffleArray(array) {
-            const newArray = [...array];
-            for (let i = newArray.length - 1; i > 0; i--) {
+            const arr = array.slice();
+            for (let i = arr.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
-                [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+                [arr[i], arr[j]] = [arr[j], arr[i]];
             }
-            return newArray;
+            return arr;
+        }
+
+        function showScreen(id) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            $(id).classList.add('active');
+        }
+
+        // ========================
+        // MODAL
+        // ========================
+        function openModal({ title, body, onConfirm, onCancel }) {
+            const overlay = $("modal-overlay");
+            $("modal-title").textContent = title;
+            $("modal-body").textContent = body;
+            overlay.classList.add("active");
+            overlay.setAttribute("aria-hidden", "false");
+
+            const confirmBtn = $("modal-confirm");
+            const cancelBtn = $("modal-cancel");
+
+            confirmBtn.onclick = () => {
+                closeModal();
+                if (onConfirm) onConfirm();
+            };
+            cancelBtn.onclick = () => {
+                closeModal();
+                if (onCancel) onCancel();
+            };
+            confirmBtn.focus();
+        }
+
+        function closeModal() {
+            const overlay = $("modal-overlay");
+            overlay.classList.remove("active");
+            overlay.setAttribute("aria-hidden", "true");
+        }
+
+        // ========================
+        // CREACIÓN DE DOMINÓ
+        // ========================
+        function createDots(number) {
+            const container = document.createElement('div');
+            container.style.position = 'relative';
+            container.style.width = '100%';
+            container.style.height = '100%';
+
+            const positions = {
+                0: [],
+                1: [[50, 50]],
+                2: [[25, 25], [75, 75]],
+                3: [[25, 25], [50, 50], [75, 75]],
+                4: [[25, 25], [75, 25], [25, 75], [75, 75]],
+                5: [[25, 25], [75, 25], [50, 50], [25, 75], [75, 75]],
+                6: [[25, 25], [75, 25], [25, 50], [75, 50], [25, 75], [75, 75]]
+            };
+
+            (positions[number] || []).forEach(([left, top]) => {
+                const dot = document.createElement('div');
+                dot.className = 'dot';
+                dot.style.left = left + '%';
+                dot.style.top = top + '%';
+                dot.style.transform = 'translate(-50%, -50%)';
+                container.appendChild(dot);
+            });
+
+            return container;
         }
 
         function createDomino(top, bottom, isSmall = false) {
@@ -927,417 +1245,410 @@
             return domino;
         }
 
-        function createDots(number) {
-            const container = document.createElement('div');
-            container.style.position = 'relative';
-            container.style.width = '100%';
-            container.style.height = '100%';
+        // ========================
+        // VALIDACIÓN DE REGISTRO
+        // ========================
+        function validateRegistration() {
+            const nameEl = $("user-name");
+            const lastnameEl = $("user-lastname");
+            const emailEl = $("user-email");
 
-            const positions = {
-                0: [],
-                1: [[50, 50]],
-                2: [[25, 25], [75, 75]],
-                3: [[25, 25], [50, 50], [75, 75]],
-                4: [[25, 25], [75, 25], [25, 75], [75, 75]],
-                5: [[25, 25], [75, 25], [50, 50], [25, 75], [75, 75]],
-                6: [[25, 25], [75, 25], [25, 50], [75, 50], [25, 75], [75, 75]]
-            };
+            const errors = { name: "", lastname: "", email: "" };
+            let isValid = true;
 
-            const dots = positions[number] || [];
-            dots.forEach(([left, top]) => {
-                const dot = document.createElement('div');
-                dot.className = 'dot';
-                dot.style.left = left + '%';
-                dot.style.top = top + '%';
-                dot.style.transform = 'translate(-50%, -50%)';
-                container.appendChild(dot);
-            });
+            const nameVal = nameEl.value.trim();
+            const lastnameVal = lastnameEl.value.trim();
+            const emailVal = emailEl.value.trim();
 
-            return container;
-        }
-
-        function renderQuestion() {
-            const problem = problems[currentQuestion];
-
-            if (!shuffledOptions[currentQuestion]) {
-                shuffledOptions[currentQuestion] = shuffleArray(problem.options);
+            if (!nameVal) {
+                errors.name = "Por favor, ingresa tu nombre.";
+                isValid = false;
+            }
+            if (!lastnameVal) {
+                errors.lastname = "Por favor, ingresa tu apellido.";
+                isValid = false;
+            }
+            if (!emailVal) {
+                errors.email = "Por favor, ingresa tu correo.";
+                isValid = false;
+            } else if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(emailVal)) {
+                errors.email = "El formato del correo no es válido.";
+                isValid = false;
             }
 
-            const sequenceContainer = document.getElementById('sequence-container');
-            sequenceContainer.innerHTML = '';
+            function showError(idBase, msg) {
+                const inputEl = $(idBase);
+                const errEl = $(idBase + "-error");
+                if (msg) {
+                    inputEl.classList.add("input-error");
+                    errEl.textContent = msg;
+                    errEl.style.display = "block";
+                } else {
+                    inputEl.classList.remove("input-error");
+                    errEl.textContent = "";
+                    errEl.style.display = "none";
+                }
+            }
 
-            problem.sequence.forEach(domino => {
-                sequenceContainer.appendChild(createDomino(domino[0], domino[1]));
+            showError("user-name", errors.name);
+            showError("user-lastname", errors.lastname);
+            showError("user-email", errors.email);
+
+            if (isValid) {
+                participant.name = nameVal;
+                participant.lastname = lastnameVal;
+                participant.email = emailVal;
+            }
+
+            return isValid;
+        }
+
+
+        // ========================
+        // TIMER
+        // ========================
+        function startTimer() {
+            timeLeft = MAX_TIME_SECONDS;
+            $("timer").classList.remove("timer-over");
+            $("timer").textContent = formatTime(timeLeft);
+
+            timerId = setInterval(() => {
+                timeLeft--;
+                if (timeLeft <= 0) {
+                    timeLeft = 0;
+                    $("timer").textContent = formatTime(0);
+                    $("timer").classList.add("timer-over");
+                    clearInterval(timerId);
+                    timerId = null;
+                    handleAutoFinishByTime();
+                } else {
+                    $("timer").textContent = formatTime(timeLeft);
+                }
+            }, 1000);
+        }
+
+        function stopTimer() {
+            if (timerId !== null) {
+                clearInterval(timerId);
+                timerId = null;
+            }
+        }
+
+        function handleAutoFinishByTime() {
+            openModal({
+                title: "Tiempo finalizado",
+                body: "El tiempo máximo ha terminado. Se calcularán los resultados con las respuestas registradas.",
+                onConfirm: finishTest,
+                onCancel: finishTest
             });
+        }
 
-            const questionMark = document.createElement('div');
-            questionMark.className = 'question-mark';
-            questionMark.textContent = '?';
-            sequenceContainer.appendChild(questionMark);
+        // ========================
+        // RENDER DE ÍTEM
+        // ========================
+        function renderCurrentItem() {
+            const item = ITEMS[currentIndex];
+            $("question-number").textContent = `Ítem ${currentIndex + 1} de ${ITEMS.length}`;
 
-            const optionsContainer = document.getElementById('options-container');
-            optionsContainer.innerHTML = '';
+            // Secuencia
+            const seq = $("sequence-container");
+            seq.innerHTML = "";
+            item.sequence.forEach(dom => {
+                seq.appendChild(createDomino(dom[0], dom[1]));
+            });
+            const qm = document.createElement("div");
+            qm.className = "question-mark";
+            qm.textContent = "?";
+            seq.appendChild(qm);
 
-            shuffledOptions[currentQuestion].forEach((option) => {
-                const optionBtn = document.createElement('div');
-                optionBtn.className = 'option-btn';
+            // Opciones (con orden estable por ítem)
+            if (!shuffledOptions[currentIndex]) {
+                const arr = item.options.map((opt, idx) => ({ tile: opt, index: idx }));
+                shuffledOptions[currentIndex] = shuffleArray(arr);
+            }
+            const opts = shuffledOptions[currentIndex];
+            const selectedIndex = answers[currentIndex];
 
-                if (answers[currentQuestion] &&
-                    answers[currentQuestion][0] === option[0] &&
-                    answers[currentQuestion][1] === option[1]) {
-                    optionBtn.classList.add('selected');
+            const optContainer = $("options-container");
+            optContainer.innerHTML = "";
+            opts.forEach(optObj => {
+                const btn = document.createElement("button");
+                btn.type = "button";
+                btn.className = "option-btn";
+                btn.setAttribute("role", "radio");
+                btn.setAttribute("aria-checked", "false");
+                btn.dataset.optionIndex = String(optObj.index);
+
+                if (selectedIndex === optObj.index) {
+                    btn.classList.add("selected");
+                    btn.setAttribute("aria-checked", "true");
                 }
 
-                optionBtn.onclick = () => selectAnswer(option);
-                optionBtn.appendChild(createDomino(option[0], option[1], true));
-                optionsContainer.appendChild(optionBtn);
+                btn.appendChild(createDomino(optObj.tile[0], optObj.tile[1], true));
+                const sr = document.createElement("span");
+                sr.className = "sr-only";
+                sr.textContent = "Seleccionar esta ficha";
+                btn.appendChild(sr);
+
+                btn.addEventListener("click", () => {
+                    selectOption(optObj.index);
+                });
+
+                btn.addEventListener("keydown", (ev) => {
+                    if (ev.key === " " || ev.key === "Enter") {
+                        ev.preventDefault();
+                        selectOption(optObj.index);
+                    }
+                });
+
+                optContainer.appendChild(btn);
             });
 
-            document.getElementById('question-number').textContent = `Pregunta ${currentQuestion + 1} de ${problems.length}`;
-
-            document.getElementById('prev-btn').disabled = currentQuestion === 0;
-
-            if (currentQuestion === problems.length - 1) {
-                document.getElementById('next-btn').style.display = 'none';
-                document.getElementById('finish-btn').style.display = 'block';
-            } else {
-                document.getElementById('next-btn').style.display = 'block';
-                document.getElementById('finish-btn').style.display = 'none';
-            }
+            // Navegación
+            $("btn-prev").disabled = currentIndex === 0;
         }
 
-        function selectAnswer(answer) {
-            answers[currentQuestion] = answer;
-            renderQuestion();
-        }
+        function selectOption(optionIndex) {
+            answers[currentIndex] = optionIndex;
 
-        // === FUNCIONES PARA MODO PRÁCTICA ===
-        function renderPracticeQuestion() {
-            const problem = practiceProblems[currentPracticeQuestion];
-
-            // Mezclar opciones solo la primera vez
-            if (!shuffledOptions['practice_' + currentPracticeQuestion]) {
-                shuffledOptions['practice_' + currentPracticeQuestion] = shuffleArray(problem.options);
-            }
-
-            // Mostrar secuencia
-            const sequenceContainer = document.getElementById('sequence-container');
-            sequenceContainer.innerHTML = '';
-
-            problem.sequence.forEach(domino => {
-                sequenceContainer.appendChild(createDomino(domino[0], domino[1]));
+            // Actualizar estado visual
+            document.querySelectorAll(".option-btn").forEach(btn => {
+                const idx = parseInt(btn.dataset.optionIndex, 10);
+                if (idx === optionIndex) {
+                    btn.classList.add("selected");
+                    btn.setAttribute("aria-checked", "true");
+                } else {
+                    btn.classList.remove("selected");
+                    btn.setAttribute("aria-checked", "false");
+                }
             });
 
-            const questionMark = document.createElement('div');
-            questionMark.className = 'question-mark';
-            questionMark.textContent = '?';
-            sequenceContainer.appendChild(questionMark);
+            // Avanzar automáticamente salvo en el último ítem
+            if (currentIndex < ITEMS.length - 1) {
+                setTimeout(() => {
+                    currentIndex++;
+                    renderCurrentItem();
+                }, 250);
+            }
+        }
 
-            // Mostrar opciones
-            const optionsContainer = document.getElementById('options-container');
-            optionsContainer.innerHTML = '';
+        // ========================
+        // CÁLCULO DE PUNTUACIONES
+        // ========================
+        function computeScores() {
+            let pd = 0;
+            let blockA = 0;
+            let blockB = 0;
+            let blockC = 0;
+            let answeredCount = 0;
 
-            shuffledOptions['practice_' + currentPracticeQuestion].forEach((option) => {
-                const optionBtn = document.createElement('div');
-                optionBtn.className = 'option-btn';
-                optionBtn.onclick = () => checkPracticeAnswer(option, problem.answer, problem.explanation);
-                optionBtn.appendChild(createDomino(option[0], option[1], true));
-                optionsContainer.appendChild(optionBtn);
+            ITEMS.forEach((item, idx) => {
+                const selectedIndex = answers[idx];
+                if (selectedIndex !== null && selectedIndex >= 0) {
+                    answeredCount++;
+                    const selectedTile = item.options[selectedIndex];
+                    const ans = item.answer;
+                    const correct = selectedTile &&
+                        selectedTile[0] === ans[0] &&
+                        selectedTile[1] === ans[1];
+                    if (correct) {
+                        pd++;
+                        if (idx < 10) blockA++;
+                        else if (idx < 25) blockB++;
+                        else blockC++;
+                    }
+                }
             });
 
-            // Actualizar controles
-            document.getElementById('question-number').textContent =
-                `Ejemplo de Práctica ${currentPracticeQuestion + 1} de ${practiceProblems.length}`;
-            document.getElementById('timer').textContent = 'PRÁCTICA';
-            document.getElementById('timer').style.background = '#10b981';
-            document.getElementById('timer').style.color = 'white';
+            const pa = Math.round((pd / ITEMS.length) * 100);
+            const elapsedSec = MAX_TIME_SECONDS - timeLeft;
+            const elapsedSecSafe = elapsedSec > 0 ? elapsedSec : 1;
+            const elapsedMinutes = elapsedSecSafe / 60;
+            const ier = pd / Math.sqrt(elapsedMinutes);
+            const speedItemsPerMin = answeredCount / elapsedMinutes;
 
-            document.getElementById('prev-btn').style.display = 'none';
-            document.getElementById('next-btn').style.display = 'none';
-            document.getElementById('finish-btn').style.display = 'none';
+            return {
+                pd,
+                pa,
+                blockA,
+                blockB,
+                blockC,
+                answeredCount,
+                omitted: ITEMS.length - answeredCount,
+                elapsedSec: Math.round(elapsedSecSafe),
+                elapsedMinutes,
+                ier,
+                speedItemsPerMin
+            };
         }
 
-        function checkPracticeAnswer(selected, correct, explanation) {
-            const isCorrect = selected[0] === correct[0] && selected[1] === correct[1];
-
-            if (isCorrect) {
-                // Mostrar mensaje de éxito
-                const message = document.createElement('div');
-                message.style.cssText = `
-                    position: fixed;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                    background: white;
-                    padding: 40px;
-                    border-radius: 16px;
-                    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-                    z-index: 10000;
-                    text-align: center;
-                    max-width: 500px;
-                    animation: slideIn 0.5s ease-out;
-                `;
-
-                message.innerHTML = `
-                    <div style="font-size: 4em; margin-bottom: 20px;">✅</div>
-                    <h2 style="color: #10b981; margin-bottom: 15px; font-size: 24px;">¡Correcto!</h2>
-                    <p style="color: #374151; line-height: 1.6; margin-bottom: 25px;">${explanation}</p>
-                    <button onclick="nextPractice()" class="btn">
-                        ${currentPracticeQuestion < practiceProblems.length - 1 ? 'Siguiente Ejemplo' : 'Comenzar Test Real'}
-                    </button>
-                `;
-
-                document.body.appendChild(message);
-            } else {
-                // Mostrar mensaje de error
-                const message = document.createElement('div');
-                message.style.cssText = `
-                    position: fixed;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                    background: white;
-                    padding: 40px;
-                    border-radius: 16px;
-                    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-                    z-index: 10000;
-                    text-align: center;
-                    max-width: 500px;
-                `;
-
-                message.innerHTML = `
-                    <div style="font-size: 4em; margin-bottom: 20px;">❌</div>
-                    <h2 style="color: #ef4444; margin-bottom: 15px; font-size: 24px;">No es correcta</h2>
-                    <p style="color: #374151; line-height: 1.6; margin-bottom: 25px;">${explanation}</p>
-                    <button onclick="document.querySelector('[style*=\\'z-index: 10000\\']').remove()" class="btn">
-                        Intentar de Nuevo
-                    </button>
-                `;
-
-                document.body.appendChild(message);
-            }
+        function qualitativeLevel(pa) {
+            if (pa >= 80) return "Alto";
+            if (pa >= 60) return "Medio-Alto";
+            if (pa >= 40) return "Medio";
+            return "Bajo";
         }
 
-        function nextPractice() {
-            // Remover mensaje
-            document.querySelectorAll('[style*="z-index: 10000"]').forEach(el => el.remove());
+        // ========================
+        // FINALIZAR PRUEBA
+        // ========================
+        function requestFinishTest() {
+            const { answeredCount, omitted } = computeScores();
+            const msg = omitted > 0
+                ? `Has respondido ${answeredCount} de ${ITEMS.length} ítems. Quedan ${omitted} sin respuesta.\n¿Deseas finalizar la prueba y enviar tus resultados?`
+                : `Has respondido los ${ITEMS.length} ítems.\n¿Deseas finalizar la prueba y enviar tus resultados?`;
 
-            currentPracticeQuestion++;
-
-            if (currentPracticeQuestion < practiceProblems.length) {
-                renderPracticeQuestion();
-            } else {
-                // Terminar práctica, iniciar test real
-                startRealTest();
-            }
+            openModal({
+                title: "Finalizar prueba",
+                body: msg,
+                onConfirm: finishTest
+            });
         }
 
-        function startRealTest() {
-            isPracticeMode = false;
-            currentQuestion = 0;
-            answers = {};
-            shuffledOptions = {};
-
-            // Iniciar temporizador
-            timerInterval = setInterval(updateTimer, 1000);
-
-            // Restaurar estilo del timer
-            document.getElementById('timer').style.background = '#f5f5f5';
-            document.getElementById('timer').style.color = '#020f27';
-
-            // Mostrar pregunta 1
-            renderQuestion();
-        }
-
-        function nextQuestion() {
-            if (currentQuestion < problems.length - 1) {
-                currentQuestion++;
-                renderQuestion();
-            }
-        }
-
-        function prevQuestion() {
-            if (currentQuestion > 0) {
-                currentQuestion--;
-                renderQuestion();
-            }
-        }
-
-        function updateTimer() {
-            const minutes = Math.floor(timeLeft / 60);
-            const seconds = timeLeft % 60;
-            document.getElementById('timer').textContent =
-                `${minutes}:${seconds.toString().padStart(2, '0')}`;
-
-            if (timeLeft <= 0) {
-                clearInterval(timerInterval);
-                finishTest();
-            } else {
-                timeLeft--;
-            }
-        }
-
-        function showInstructions() {
-            userName = document.getElementById('user-name-register').value.trim();
-            userLastName = document.getElementById('user-lastname-register').value.trim();
-            userEmail = document.getElementById('user-email-register').value.trim();
-
-            if (!userName || !userLastName || !userEmail) {
-                alert('Por favor, completa todos los campos');
-                return;
-            }
-
-            if (!userEmail.includes('@')) {
-                alert('Por favor ingresa un email válido');
-                return;
-            }
-
-            document.getElementById('registration-screen').classList.remove('active');
-            document.getElementById('intro-screen').classList.add('active');
-            document.getElementById('participant-name').textContent = 'Participante: ' + userName + ' ' + userLastName;
-        }
-
-        function startTest() {
-            answers = {};
-            currentQuestion = 0;
-            currentPracticeQuestion = 0;
-            isPracticeMode = true;
-            timeLeft = 1800;
-            shuffledOptions = {};
-
-            document.querySelector('.container').classList.add('modo-test');
-
-            document.getElementById('intro-screen').classList.remove('active');
-            document.getElementById('test-screen').classList.add('active');
-
-            // Iniciar con los ejemplos de práctica
-            renderPracticeQuestion();
-        }
 
         async function finishTest() {
-            clearInterval(timerInterval);
+            stopTimer();
+            const scores = computeScores();
 
-            const container = document.querySelector('.container');
-            container.classList.remove('modo-test');
-            container.classList.add('modo-resultados');
-
-            let correct = 0;
-            problems.forEach((problem, index) => {
-                const userAnswer = answers[index];
-                if (userAnswer &&
-                    userAnswer[0] === problem.answer[0] &&
-                    userAnswer[1] === problem.answer[1]) {
-                    correct++;
+            // Guardar en Apps Script
+            if (SAVE_RESULTS_URL) {
+                try {
+                    await saveResultsRemote(scores);
+                } catch (e) {
+                    console.error("Error al enviar resultados:", e);
                 }
-            });
+            }
 
-            let percentile;
-            let levelDescription;
+            // Ajuste visual del contenedor
+            const cont = $("main-container");
+            cont.classList.remove("modo-test");
+            cont.classList.add("modo-resultados");
 
-            if (correct >= 44) { percentile = 99; levelDescription = "SUPERIOR"; }
-            else if (correct >= 40) { percentile = 95; levelDescription = "SUPERIOR"; }
-            else if (correct >= 37) { percentile = 90; levelDescription = "SUPERIOR AL TÉRMINO MEDIO"; }
-            else if (correct >= 33) { percentile = 75; levelDescription = "SUPERIOR AL TÉRMINO MEDIO"; }
-            else if (correct >= 28) { percentile = 60; levelDescription = "SUPERIOR AL TÉRMINO MEDIO"; }
-            else if (correct >= 23) { percentile = 50; levelDescription = "TÉRMINO MEDIO"; }
-            else if (correct >= 18) { percentile = 40; levelDescription = "TÉRMINO MEDIO"; }
-            else if (correct >= 14) { percentile = 25; levelDescription = "INFERIOR AL TÉRMINO MEDIO"; }
-            else if (correct >= 10) { percentile = 10; levelDescription = "INFERIOR AL TÉRMINO MEDIO"; }
-            else if (correct >= 6) { percentile = 5; levelDescription = "DEFICIENTE"; }
-            else { percentile = 1; levelDescription = "DEFICIENTE"; }
+            // Mostrar solo mensaje simple al participante
+            $("results-participant").textContent =
+                `${participant.name} ${participant.lastname}`;
+            // El texto principal ya está en el HTML, pero podrías sobrescribirlo si quisieras:
+            // $("results-message").textContent = "Tus resultados se han enviado correctamente...";
 
-            document.getElementById('correct-count').textContent = correct;
-            document.getElementById('percentile-score').textContent = percentile;
-            document.getElementById('level-description').textContent = levelDescription;
-
-            document.getElementById('result-user-info').innerHTML = `<strong>Participante:</strong> ${userName} ${userLastName}`;
-            document.getElementById('saved-name').textContent = userName + ' ' + userLastName;
-            document.getElementById('saved-email').textContent = userEmail;
-
-            // Guardar resultados en Google Sheets
-            await sendResultsToGoogleSheets(correct, percentile, levelDescription);
-
-            document.getElementById('test-screen').classList.remove('active');
-            document.getElementById('results-screen').classList.add('active');
-
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            showScreen("screen-results");
+            window.scrollTo({ top: 0, behavior: "smooth" });
         }
 
-        async function sendResultsToGoogleSheets(correct, percentile, levelDescription) {
-            // Mostrar loading
-            document.getElementById('loading-overlay').classList.add('active');
 
-            // Crear string de respuestas en formato "1:4,2:1,3:2,..."
-            // Donde 1:4 significa Pregunta 1, eligió Opción 4
-            let respuestasString = '';
-            for (let i = 0; i < problems.length; i++) {
-                const userAnswer = answers[i];
-                if (userAnswer) {
-                    // Buscar qué número de opción eligió (1-6)
-                    const problem = problems[i];
-                    const selectedOptionIndex = shuffledOptions[i].findIndex(opt =>
-                        opt[0] === userAnswer[0] && opt[1] === userAnswer[1]
-                    );
-                    respuestasString += `${i + 1}:${selectedOptionIndex + 1}`;
-                } else {
-                    respuestasString += `${i + 1}:0`; // Sin respuesta = 0
+        // ========================
+        // ENVÍO A APPS SCRIPT
+        // ========================
+        async function saveResultsRemote(scores) {
+            // Email del admin desde localStorage.adminData
+            let adminEmail = participant.email; // fallback
+            try {
+                const raw = localStorage.getItem("adminData");
+                if (raw) {
+                    const admin = JSON.parse(raw);
+                    if (admin && admin.email) {
+                        adminEmail = admin.email;
+                    }
                 }
-                if (i < problems.length - 1) {
-                    respuestasString += ',';
-                }
+            } catch (e) {
+                console.error("adminData inválido:", e);
             }
 
-            const adminData = localStorage.getItem('adminData');
-            let admin;
-            if (adminData) {
-                admin = JSON.parse(adminData);
-                console.log("Admin logueado:", admin.nombre);
-            } else {
-                console.log("No hay admin logueado.");
+            // Construir string de respuestas "1:1,2:0,3:1,..."
+            // 1 = respuesta correcta, 0 = incorrecta u omitida
+            let respuestasString = "";
+            for (let i = 0; i < ITEMS.length; i++) {
+                const answerIndex = answers[i]; // índice lógico 0..5 o null
+                let value = 0;                  // por defecto: 0 = incorrecta / omitida
+
+                if (answerIndex !== null && answerIndex >= 0) {
+                    const item = ITEMS[i];
+                    const selectedTile = item.options[answerIndex]; // [top,bottom] de la opción elegida
+                    const ans = item.answer;                        // [top,bottom] correcta
+
+                    const isCorrect =
+                        selectedTile &&
+                        selectedTile[0] === ans[0] &&
+                        selectedTile[1] === ans[1];
+
+                    value = isCorrect ? 1 : 0;
+                }
+
+                respuestasString += `${i + 1}:${value}`;
+                if (i < ITEMS.length - 1) respuestasString += ",";
             }
 
-            const data = {
-                accion: 'guardar',
-                nombre: userName,
-                apellido: userLastName,
-                email: admin.email,
+            const payload = {
+                accion: "guardar",
+                nombre: participant.name,
+                apellido: participant.lastname,
+                email: adminEmail,            // el correo que se guarda en la hoja
+                emailUser: participant.email, // correo del usuario
                 respuestas: respuestasString
             };
 
-            console.log('📊 Enviando datos a Google Sheets...', data);
-
             try {
-                // Construir URL con parámetros
-                const params = new URLSearchParams(data);
-                const url = `${APPS_SCRIPT_URL}?${params.toString()}`;
-
-                const response = await fetch(url, {
-                    method: 'GET',
-                    redirect: 'follow'
+                const params = new URLSearchParams(payload);
+                const resp = await fetch(`${SAVE_RESULTS_URL}?${params.toString()}`, {
+                    method: "GET",
+                    redirect: "follow"
                 });
 
-                const result = await response.json();
+                const result = await resp.json();
+                console.log("Respuesta Apps Script:", result);
 
-                console.log('✅ Respuesta del servidor:', result);
-
-                if (result.status === 'success') {
-                    console.log('✅ Datos guardados correctamente en Google Sheets');
-                } else {
-                    console.error('❌ Error al guardar:', result.mensaje);
-                    alert('Hubo un problema al guardar los datos. Por favor contacta al administrador.');
+                if (result.status !== "success") {
+                    console.error("Error al guardar en Apps Script:", result.mensaje);
                 }
-            } catch (error) {
-                console.error('❌ Error de red:', error);
-                alert('Error de conexión. Por favor verifica tu conexión a internet.');
-            } finally {
-                // Ocultar loading
-                document.getElementById('loading-overlay').classList.remove('active');
+            } catch (err) {
+                console.error("Error de red al guardar resultados:", err);
             }
         }
 
-        function restartTest() {
-            location.reload();
-        }
+        // ========================
+        // EVENTOS
+        // ========================
+        $("btn-go-instructions").addEventListener("click", () => {
+            if (!validateRegistration()) return;
+            $("participant-label").textContent = `Participante: ${participant.name} ${participant.lastname}`;
+            showScreen("screen-instructions");
+        });
+
+        $("btn-back-registration").addEventListener("click", () => {
+            showScreen("screen-registration");
+        });
+
+        $("btn-start-test").addEventListener("click", () => {
+            currentIndex = 0;
+            answers = new Array(TOTAL_ITEMS).fill(null);
+            shuffledOptions = {};
+            timeLeft = MAX_TIME_SECONDS;
+
+            $("main-container").classList.add("modo-test");
+            showScreen("screen-test");
+            renderCurrentItem();
+            startTimer();
+        });
+
+        $("btn-prev").addEventListener("click", () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                renderCurrentItem();
+            }
+        });
+
+        $("btn-summary-mini").addEventListener("click", () => {
+            const { answeredCount, omitted } = computeScores();
+            openModal({
+                title: "Resumen rápido",
+                body: `Ítems respondidos: ${answeredCount} · Omisiones: ${omitted}.`,
+                onConfirm: closeModal,
+                onCancel: closeModal
+            });
+        });
+
+        $("btn-finish").addEventListener("click", () => {
+            requestFinishTest();
+        });
     </script>
 </body>
 

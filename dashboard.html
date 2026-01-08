@@ -37,7 +37,7 @@
         --stroke: rgba(198, 201, 215, .25);
     }
 
-/* --- INICIO DEL CAMBIO --- */
+    /* --- INICIO DEL CAMBIO --- */
 
     .test-badge {
         display: inline-block;
@@ -49,7 +49,7 @@
         background: rgba(254, 254, 255, .05);
         backdrop-filter: blur(10px);
         /* Borde base transparente para que mande el específico */
-        border: 1px solid transparent; 
+        border: 1px solid transparent;
         transition: transform .2s ease;
     }
 
@@ -216,18 +216,20 @@
         }
     }
 
-.login-logo {
+    .login-logo {
         width: 80px;
         height: 80px;
-        border-radius: 50%; /* Círculo perfecto */
-        
+        border-radius: 50%;
+        /* Círculo perfecto */
+
         background-image: url('./img/one-logocolor.png');
-        
+
         /* ✅ CORRECCIÓN: */
-        background-size: contain; /* Ajusta la imagen completa dentro */
+        background-size: contain;
+        /* Ajusta la imagen completa dentro */
         background-repeat: no-repeat;
         background-position: center;
-        
+
         box-shadow: 0 0 0 1px rgba(198, 201, 215, .18), 0 0 40px rgba(107, 225, 227, .18);
         animation: logoPulse 4.5s ease-in-out infinite;
         margin: 0 auto 1.5rem;
@@ -419,55 +421,59 @@
         gap: .75rem;
     }
 
-/* logo admin */
-.brand-logo {
+    /* logo admin */
+    .brand-logo {
         width: 45px;
         height: 45px;
-        border-radius: 50%; /* Hace el contenedor redondo */
-        
+        border-radius: 50%;
+        /* Hace el contenedor redondo */
+
         background-image: url('./img/one-logocolor.png');
-        background-size: 85%; /* Logo un poco más chico para que no toque bordes */
+        background-size: 85%;
+        /* Logo un poco más chico para que no toque bordes */
         background-repeat: no-repeat;
         background-position: center;
-        
+
         /* Borde real suave */
         border: 1px solid rgba(198, 201, 215, .25);
-        
+
         /* Sombra externa (glow) */
         box-shadow: 0 0 35px rgba(107, 225, 227, .25);
-        
+
         position: relative;
         flex-shrink: 0;
-        
+
         /* ✅ LA CLAVE: Esto recorta todo lo que se salga del círculo (incluidas las puntas) */
-        overflow: hidden; 
-        
+        overflow: hidden;
+
         /* ✅ EXTRA: Esto ayuda a que el recorte sea suave en algunos navegadores */
         -webkit-mask-image: -webkit-radial-gradient(white, black);
     }
 
-.brand-logo {
+    .brand-logo {
         width: 45px;
         height: 45px;
-        border-radius: 50%; /* Hace el contenedor redondo */
-        
+        border-radius: 50%;
+        /* Hace el contenedor redondo */
+
         background-image: url('./img/one-logocolor.png');
-        background-size: 85%; /* Logo un poco más chico para que no toque bordes */
+        background-size: 85%;
+        /* Logo un poco más chico para que no toque bordes */
         background-repeat: no-repeat;
         background-position: center;
-        
+
         /* Borde real suave */
         border: 1px solid rgba(198, 201, 215, .25);
-        
+
         /* Sombra externa (glow) */
         box-shadow: 0 0 35px rgba(107, 225, 227, .25);
-        
+
         position: relative;
         flex-shrink: 0;
-        
+
         /* ✅ LA CLAVE: Esto recorta todo lo que se salga del círculo (incluidas las puntas) */
-        overflow: hidden; 
-        
+        overflow: hidden;
+
         /* ✅ EXTRA: Esto ayuda a que el recorte sea suave en algunos navegadores */
         -webkit-mask-image: -webkit-radial-gradient(white, black);
     }
@@ -477,7 +483,8 @@
         content: "";
         position: absolute;
         inset: 0;
-        border-radius: 50%; /* 👈 Seguridad doble */
+        border-radius: 50%;
+        /* 👈 Seguridad doble */
         background: radial-gradient(circle at 30% 30%, rgba(254, 254, 255, .14), transparent 55%);
         pointer-events: none;
     }
@@ -886,168 +893,176 @@
         .main {
             grid-template-columns: 1fr;
         }
-    } 
+    }
 
-/* ══════════════════════════════════════════════════════════
+    /* ══════════════════════════════════════════════════════════
    FOOTER PREMIUM (Degradado + Efecto)
    ══════════════════════════════════════════════════════════ */
 
-/* Asegura que el footer quede siempre abajo */
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-/* Asume que tienes un contenedor principal para el contenido */
-.main-container { flex: 1; }
-
-/* Estilos Principales del Footer */
-.premium-footer {
-    width: 100%;
-    margin-top: auto;
-    border-top: 3px solid #ff69b4;
-    
-    /* Fondo negro sólido */
-    background: #000000 !important;
-    
-    /* ✅ QUITAMOS LOS FILTROS (Esto arregla el efecto visual raro) */
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    
-    padding: 18px 0;
-    color: #ffffff;
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    font-size: 14px;
-}
-
-.footer-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 25px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-/* --- Lado Izquierdo --- */
-.footer-left {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    opacity: 0.85; /* Ligeramente atenuado */
-}
-
-/* Ajuste del tamaño del logo de letra "ONE" */
-.footer-logo-letra {
-    height: 18px;
-    width: auto;
-    vertical-align: middle;
-}
-
-/* --- Lado Derecho --- */
-.footer-right {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.developed-txt {
-    font-size: 12px;
-    letter-spacing: 1px;
-    opacity: 0.7;
-}
-
-/* Estilos del enlace que contiene los logos */
-.dev-link {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.dev-link:hover {
-    opacity: 0.8;
-    transform: translateY(-1px);
-}
-
-/* Tamaños de los logos del desarrollador */
-.dev-logo-one {
-    height: 22px;
-    width: auto;
-}
-
-.by-txt {
-    margin: 0 6px;
-    font-style: italic;
-    opacity: 0.7;
-    font-size: 13px;
-}
-
-.dev-logo-escencial {
-    height: 24px; /* Ajustado para el logo blanco de Escencial */
-    width: auto;
-}
-
-/* Responsive: Se adapta a pantallas pequeñas */
-@media (max-width: 768px) {
-    .footer-container {
+    /* Asegura que el footer quede siempre abajo */
+    body {
+        display: flex;
         flex-direction: column;
-        gap: 15px;
-        text-align: center;
+        min-height: 100vh;
     }
-    
-    .footer-left, .footer-right {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    
-    .developed-txt {
-        width: 100%;
-        margin-bottom: 5px;
-    }
-}
 
-/* ════════════════════════════════════════
+    /* Asume que tienes un contenedor principal para el contenido */
+    .main-container {
+        flex: 1;
+    }
+
+    /* Estilos Principales del Footer */
+    .premium-footer {
+        width: 100%;
+        margin-top: auto;
+        border-top: 3px solid #ff69b4;
+
+        /* Fondo negro sólido */
+        background: #000000 !important;
+
+        /* ✅ QUITAMOS LOS FILTROS (Esto arregla el efecto visual raro) */
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+
+        padding: 18px 0;
+        color: #ffffff;
+        font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        font-size: 14px;
+    }
+
+    .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 25px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* --- Lado Izquierdo --- */
+    .footer-left {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        opacity: 0.85;
+        /* Ligeramente atenuado */
+    }
+
+    /* Ajuste del tamaño del logo de letra "ONE" */
+    .footer-logo-letra {
+        height: 18px;
+        width: auto;
+        vertical-align: middle;
+    }
+
+    /* --- Lado Derecho --- */
+    .footer-right {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .developed-txt {
+        font-size: 12px;
+        letter-spacing: 1px;
+        opacity: 0.7;
+    }
+
+    /* Estilos del enlace que contiene los logos */
+    .dev-link {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .dev-link:hover {
+        opacity: 0.8;
+        transform: translateY(-1px);
+    }
+
+    /* Tamaños de los logos del desarrollador */
+    .dev-logo-one {
+        height: 22px;
+        width: auto;
+    }
+
+    .by-txt {
+        margin: 0 6px;
+        font-style: italic;
+        opacity: 0.7;
+        font-size: 13px;
+    }
+
+    .dev-logo-escencial {
+        height: 24px;
+        /* Ajustado para el logo blanco de Escencial */
+        width: auto;
+    }
+
+    /* Responsive: Se adapta a pantallas pequeñas */
+    @media (max-width: 768px) {
+        .footer-container {
+            flex-direction: column;
+            gap: 15px;
+            text-align: center;
+        }
+
+        .footer-left,
+        .footer-right {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .developed-txt {
+            width: 100%;
+            margin-bottom: 5px;
+        }
+    }
+
+    /* ════════════════════════════════════════
    SCROLLBAR DARK AESTHETIC (Negro + Neon)
    ════════════════════════════════════════ */
 
-/* 1. Dimensiones */
-::-webkit-scrollbar {
-  width: 12px; /* Un pelín más ancha para que luzca el negro */
-  height: 12px;
-}
+    /* 1. Dimensiones */
+    ::-webkit-scrollbar {
+        width: 12px;
+        /* Un pelín más ancha para que luzca el negro */
+        height: 12px;
+    }
 
-/* 2. El fondo (el carril) AHORA ES NEGRO EXPLÍCITO */
-/* Esto elimina cualquier riesgo de que se vea blanco de fondo */
-::-webkit-scrollbar-track {
-  background: var(--c-black); 
-}
+    /* 2. El fondo (el carril) AHORA ES NEGRO EXPLÍCITO */
+    /* Esto elimina cualquier riesgo de que se vea blanco de fondo */
+    ::-webkit-scrollbar-track {
+        background: var(--c-black);
+    }
 
-/* 3. La "píldora" neon */
-::-webkit-scrollbar-thumb {
-  /* Tu degradado de marca */
-  background: linear-gradient(180deg, var(--c-cyan), var(--c-pink));
-  
-  border-radius: 99px;
-  
-  /* CLAVE: El borde es del mismo color que el fondo (NEGRO) */
-  /* Esto crea el efecto de "flotar" pero sobre negro, nunca sobre blanco */
-  border: 3px solid var(--c-black);
-  background-clip: content-box;
-}
+    /* 3. La "píldora" neon */
+    ::-webkit-scrollbar-thumb {
+        /* Tu degradado de marca */
+        background: linear-gradient(180deg, var(--c-cyan), var(--c-pink));
 
-/* 4. Efecto Hover: Se ilumina más */
-::-webkit-scrollbar-thumb:hover {
-  border: 2px solid var(--c-black); /* Se hace un poco más gordita */
-  background: linear-gradient(180deg, #6be1e3, #e17bd7);
-}
+        border-radius: 99px;
 
-/* Compatibilidad Firefox */
-html {
-  scrollbar-width: thin;
-  scrollbar-color: var(--c-pink) var(--c-black); /* Píldora rosa, fondo NEGRO */
-}
+        /* CLAVE: El borde es del mismo color que el fondo (NEGRO) */
+        /* Esto crea el efecto de "flotar" pero sobre negro, nunca sobre blanco */
+        border: 3px solid var(--c-black);
+        background-clip: content-box;
+    }
 
+    /* 4. Efecto Hover: Se ilumina más */
+    ::-webkit-scrollbar-thumb:hover {
+        border: 2px solid var(--c-black);
+        /* Se hace un poco más gordita */
+        background: linear-gradient(180deg, #6be1e3, #e17bd7);
+    }
+
+    /* Compatibilidad Firefox */
+    html {
+        scrollbar-width: thin;
+        scrollbar-color: var(--c-pink) var(--c-black);
+        /* Píldora rosa, fondo NEGRO */
+    }
 </style>
 
 <body>
@@ -1232,23 +1247,24 @@ html {
             </aside>
         </main>
 
-<footer class="premium-footer">
-    <div class="footer-container">
-        <div class="footer-left">
-            <img src="../../img/one-logoletra.png" alt="ONE" class="footer-logo-letra">
-            <span> | Todos los derechos reservados. © 2026</span>
-        </div>
+        <footer class="premium-footer">
+            <div class="footer-container">
+                <div class="footer-left">
+                    <img src="../../img/one-logoletra.png" alt="ONE" class="footer-logo-letra">
+                    <span> | Todos los derechos reservados. © 2026</span>
+                </div>
 
-        <div class="footer-right">
-            <span class="developed-txt">Desarrollado por</span>
-            <a href="https://escencialconsultora.com.ar/" target="_blank" class="dev-link" title="Ir a Escencial Consultora">
-                <img src="../../img/one-logocolor.png" alt="ONE" class="dev-logo-one">
-                <span class="by-txt">by</span>
-                <img src="../../img/escencial-logoblanco.png" alt="Escencial" class="dev-logo-escencial">
-            </a>
-        </div>
-    </div>
-</footer>
+                <div class="footer-right">
+                    <span class="developed-txt">Desarrollado por</span>
+                    <a href="https://escencialconsultora.com.ar/" target="_blank" class="dev-link"
+                        title="Ir a Escencial Consultora">
+                        <img src="../../img/one-logocolor.png" alt="ONE" class="dev-logo-one">
+                        <span class="by-txt">by</span>
+                        <img src="../../img/escencial-logoblanco.png" alt="Escencial" class="dev-logo-escencial">
+                    </a>
+                </div>
+            </div>
+        </footer>
     </div>
 
     <script>
@@ -1319,7 +1335,7 @@ html {
         // ============================================
         // CONFIG
         // ============================================
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxDPIeuGJ9tL46cNXGwUPrjGrodRgbCIEXrqEoEahvvCqmyszrkNU5YGZQaW3og95LL/exec';
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw1oYty7uLPpgVT2enkZOTEnfmUCJmNIpX4FR3h4a1Mc3OUYGK_fgfLlUItqEeR-HPp/exec';
         const DB_GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby6kBo-HW69iQ6sUx0YbU_xR2qsufgVLOkNCnpPBYeb0A_dn3_u3yR4Q45iK8v9FbdC/exec';
 
         // ============================================
@@ -1611,6 +1627,7 @@ html {
                     localStorage.setItem('adminData', JSON.stringify(data.admin[0]));
                 }
 
+
                 return cleanedUsers;
             } catch (error) {
                 console.error('Error en fetch:', error);
@@ -1708,13 +1725,26 @@ html {
             loginError.textContent = '';
 
             try {
-                const params = new URLSearchParams({ accion: 'validarAdmin', admin: user, contrasena: pass });
+                const params = new URLSearchParams({
+                    accion: 'validarAdmin',
+                    admin: user,
+                    contrasena: pass
+                });
                 const url = `${GOOGLE_SCRIPT_URL}?${params.toString()}`;
                 const response = await fetch(url, { method: 'GET' });
                 if (!response.ok) throw new Error('Error al contactar con el servidor');
 
                 const result = await response.json();
+
                 if (result.estado === 'exito' && result.valido) {
+                    // ⬅️ Guardar datos del admin en localStorage
+                    if (result.datos) {
+                        localStorage.setItem('adminData', JSON.stringify(result.datos));
+                    } else {
+                        // Por si acaso viene sin datos, guarda al menos el nombre que se usó para loguear
+                        localStorage.setItem('adminData', JSON.stringify({ nombre: user }));
+                    }
+
                     showView('panel');
                     showMessage('Bienvenido, Administrador', 'success');
                     adminLoginForm.reset();
@@ -1723,12 +1753,15 @@ html {
                     applySearch(); // respeta lo que esté escrito en el buscador
                 } else {
                     loginError.textContent = result.mensaje || 'Credenciales incorrectas.';
+                    // Opcional: limpiar adminData si el login falla
+                    localStorage.removeItem('adminData');
                 }
             } catch (error) {
                 console.error('❌ Error en login:', error);
                 loginError.textContent = 'Error al conectar con el servidor.';
             }
         });
+
 
         backToParticipantBtn.addEventListener('click', () => window.location.href = 'index.html');
         adminLogoutBtn.addEventListener('click', () => {
