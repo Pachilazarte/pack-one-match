@@ -171,36 +171,38 @@
     }
   }
 
-/* ✅ LOGO LOGIN (Réplica exacta del Admin Panel) */
-.login-logo {
+  /* ✅ LOGO LOGIN (Réplica exacta del Admin Panel) */
+  .login-logo {
     width: 80px;
     height: 80px;
-    border-radius: 50%; /* Círculo perfecto */
-    
+    border-radius: 50%;
+    /* Círculo perfecto */
+
     background-image: url('./img/one-logocolor.png');
-    
+
     /* ⚠️ LA CLAVE: 'contain' hace que el logo entre entero sin cortarse */
-    background-size: contain; 
+    background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    
+
     /* El borde y brillo neón exacto del admin */
     box-shadow: 0 0 0 1px rgba(198, 201, 215, .18), 0 0 40px rgba(107, 225, 227, .18);
     animation: logoPulse 4.5s ease-in-out infinite;
-    
+
     margin: 0 auto 1.5rem;
     position: relative;
     overflow: hidden;
-}
+  }
 
-/* El brillo de "vidrio" encima (igual al admin) */
-.login-logo::after {
+  /* El brillo de "vidrio" encima (igual al admin) */
+  .login-logo::after {
     content: "";
     position: absolute;
     inset: 0;
     background: radial-gradient(circle at 30% 30%, rgba(254, 254, 255, .14), transparent 55%);
     pointer-events: none;
-}
+  }
+
   .login-title {
     font-family: var(--font-title);
     font-size: 2rem;
@@ -370,36 +372,40 @@
     gap: .75rem;
   }
 
-/* ✅ LOGO CORREGIDO (Busca .brand-logo) */
-    .brand-logo {
-        width: 55px;  /* Un poco más grande para que se luzca */
-        height: 55px;
-        
-        /* Asegúrate de que la ruta de la imagen sea correcta */
-        background-image: url('./img/one-logocolor.png');
-        
-        background-size: contain; /* Muestra el logo entero */
-        background-repeat: no-repeat;
-        background-position: center;
-        
-        /* 🚫 Quitamos los efectos de botón redondo */
-        border-radius: 0; 
-        border: none;
-        box-shadow: none;
-        
-        /* ✨ Solo un brillo exterior suave */
-        filter: drop-shadow(0 0 15px rgba(107,225,227,.4));
-        
-        position: relative;
-        flex-shrink: 0;
-        overflow: visible; /* Importante para que no se corte */
-        -webkit-mask-image: none; /* Quitamos la máscara si existía */
-    }
+  /* ✅ LOGO CORREGIDO (Busca .brand-logo) */
+  .brand-logo {
+    width: 55px;
+    /* Un poco más grande para que se luzca */
+    height: 55px;
 
-    /* 🚫 Ocultamos el brillo interno redondo */
-    .brand-logo::after {
-        display: none;
-    }
+    /* Asegúrate de que la ruta de la imagen sea correcta */
+    background-image: url('./img/one-logocolor.png');
+
+    background-size: contain;
+    /* Muestra el logo entero */
+    background-repeat: no-repeat;
+    background-position: center;
+
+    /* 🚫 Quitamos los efectos de botón redondo */
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+
+    /* ✨ Solo un brillo exterior suave */
+    filter: drop-shadow(0 0 15px rgba(107, 225, 227, .4));
+
+    position: relative;
+    flex-shrink: 0;
+    overflow: visible;
+    /* Importante para que no se corte */
+    -webkit-mask-image: none;
+    /* Quitamos la máscara si existía */
+  }
+
+  /* 🚫 Ocultamos el brillo interno redondo */
+  .brand-logo::after {
+    display: none;
+  }
 
   .brand-logo::after {
     content: "";
@@ -678,166 +684,174 @@
     }
   }
 
-/* ══════════════════════════════════════════════════════════
+  /* ══════════════════════════════════════════════════════════
    FOOTER PREMIUM (Degradado + Efecto)
    ══════════════════════════════════════════════════════════ */
 
-/* Asegura que el footer quede siempre abajo */
-body {
+  /* Asegura que el footer quede siempre abajo */
+  body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-}
-/* Asume que tienes un contenedor principal para el contenido */
-.main-container { flex: 1; }
+  }
 
-/* Estilos Principales del Footer */
-.premium-footer {
+  /* Asume que tienes un contenedor principal para el contenido */
+  .main-container {
+    flex: 1;
+  }
+
+  /* Estilos Principales del Footer */
+  .premium-footer {
     width: 100%;
     margin-top: auto;
     border-top: 3px solid #ff69b4;
-    
+
     /* Fondo negro sólido */
     background: #000000 !important;
-    
+
     /* ✅ QUITAMOS LOS FILTROS (Esto arregla el efecto visual raro) */
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
-    
+
     padding: 18px 0;
     color: #ffffff;
     font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     font-size: 14px;
-}
+  }
 
-.footer-container {
+  .footer-container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 25px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
+  }
 
-/* --- Lado Izquierdo --- */
-.footer-left {
+  /* --- Lado Izquierdo --- */
+  .footer-left {
     display: flex;
     align-items: center;
     gap: 8px;
-    opacity: 0.85; /* Ligeramente atenuado */
-}
+    opacity: 0.85;
+    /* Ligeramente atenuado */
+  }
 
-/* Ajuste del tamaño del logo de letra "ONE" */
-.footer-logo-letra {
+  /* Ajuste del tamaño del logo de letra "ONE" */
+  .footer-logo-letra {
     height: 18px;
     width: auto;
     vertical-align: middle;
-}
+  }
 
-/* --- Lado Derecho --- */
-.footer-right {
+  /* --- Lado Derecho --- */
+  .footer-right {
     display: flex;
     align-items: center;
     gap: 12px;
-}
+  }
 
-.developed-txt {
+  .developed-txt {
     font-size: 12px;
     letter-spacing: 1px;
     opacity: 0.7;
-}
+  }
 
-/* Estilos del enlace que contiene los logos */
-.dev-link {
+  /* Estilos del enlace que contiene los logos */
+  .dev-link {
     display: flex;
     align-items: center;
     text-decoration: none;
     transition: opacity 0.3s ease, transform 0.3s ease;
-}
+  }
 
-.dev-link:hover {
+  .dev-link:hover {
     opacity: 0.8;
     transform: translateY(-1px);
-}
+  }
 
-/* Tamaños de los logos del desarrollador */
-.dev-logo-one {
+  /* Tamaños de los logos del desarrollador */
+  .dev-logo-one {
     height: 22px;
     width: auto;
-}
+  }
 
-.by-txt {
+  .by-txt {
     margin: 0 6px;
     font-style: italic;
     opacity: 0.7;
     font-size: 13px;
-}
+  }
 
-.dev-logo-escencial {
-    height: 24px; /* Ajustado para el logo blanco de Escencial */
+  .dev-logo-escencial {
+    height: 24px;
+    /* Ajustado para el logo blanco de Escencial */
     width: auto;
-}
+  }
 
-/* Responsive: Se adapta a pantallas pequeñas */
-@media (max-width: 768px) {
+  /* Responsive: Se adapta a pantallas pequeñas */
+  @media (max-width: 768px) {
     .footer-container {
-        flex-direction: column;
-        gap: 15px;
-        text-align: center;
+      flex-direction: column;
+      gap: 15px;
+      text-align: center;
     }
-    
-    .footer-left, .footer-right {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    
-    .developed-txt {
-        width: 100%;
-        margin-bottom: 5px;
-    }
-}
 
-/* ════════════════════════════════════════
+    .footer-left,
+    .footer-right {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .developed-txt {
+      width: 100%;
+      margin-bottom: 5px;
+    }
+  }
+
+  /* ════════════════════════════════════════
    SCROLLBAR DARK AESTHETIC (Negro + Neon)
    ════════════════════════════════════════ */
 
-/* 1. Dimensiones */
-::-webkit-scrollbar {
-  width: 12px; /* Un pelín más ancha para que luzca el negro */
-  height: 12px;
-}
+  /* 1. Dimensiones */
+  ::-webkit-scrollbar {
+    width: 12px;
+    /* Un pelín más ancha para que luzca el negro */
+    height: 12px;
+  }
 
-/* 2. El fondo (el carril) AHORA ES NEGRO EXPLÍCITO */
-/* Esto elimina cualquier riesgo de que se vea blanco de fondo */
-::-webkit-scrollbar-track {
-  background: var(--c-black); 
-}
+  /* 2. El fondo (el carril) AHORA ES NEGRO EXPLÍCITO */
+  /* Esto elimina cualquier riesgo de que se vea blanco de fondo */
+  ::-webkit-scrollbar-track {
+    background: var(--c-black);
+  }
 
-/* 3. La "píldora" neon */
-::-webkit-scrollbar-thumb {
-  /* Tu degradado de marca */
-  background: linear-gradient(180deg, var(--c-cyan), var(--c-pink));
-  
-  border-radius: 99px;
-  
-  /* CLAVE: El borde es del mismo color que el fondo (NEGRO) */
-  /* Esto crea el efecto de "flotar" pero sobre negro, nunca sobre blanco */
-  border: 3px solid var(--c-black);
-  background-clip: content-box;
-}
+  /* 3. La "píldora" neon */
+  ::-webkit-scrollbar-thumb {
+    /* Tu degradado de marca */
+    background: linear-gradient(180deg, var(--c-cyan), var(--c-pink));
 
-/* 4. Efecto Hover: Se ilumina más */
-::-webkit-scrollbar-thumb:hover {
-  border: 2px solid var(--c-black); /* Se hace un poco más gordita */
-  background: linear-gradient(180deg, #6be1e3, #e17bd7);
-}
+    border-radius: 99px;
 
-/* Compatibilidad Firefox */
-html {
-  scrollbar-width: thin;
-  scrollbar-color: var(--c-pink) var(--c-black); /* Píldora rosa, fondo NEGRO */
-}
+    /* CLAVE: El borde es del mismo color que el fondo (NEGRO) */
+    /* Esto crea el efecto de "flotar" pero sobre negro, nunca sobre blanco */
+    border: 3px solid var(--c-black);
+    background-clip: content-box;
+  }
 
+  /* 4. Efecto Hover: Se ilumina más */
+  ::-webkit-scrollbar-thumb:hover {
+    border: 2px solid var(--c-black);
+    /* Se hace un poco más gordita */
+    background: linear-gradient(180deg, #6be1e3, #e17bd7);
+  }
+
+  /* Compatibilidad Firefox */
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--c-pink) var(--c-black);
+    /* Píldora rosa, fondo NEGRO */
+  }
 </style>
 
 <body>
@@ -977,6 +991,18 @@ html {
             <span class="arrow">→</span>
           </button>
         </article>
+        <!-- Test 6 -->
+        <article class="eval-card" id="test-6">
+          <div class="eval-icon">⭐</div>
+          <h3 class="eval-name">ENEAGRAMA PROFESIONAL</h3>
+          <p class="eval-desc">
+            Evalúa potencial, toma de decisiones, influencia y gestión de equipos.
+          </p>
+          <button class="btn-test" onclick="window.location.href='tests/eneagramaprofesional/index.html'">
+            <span>Comenzar Eneagrama</span>
+            <span class="arrow">→</span>
+          </button>
+        </article>
       </div>
 
       <!-- Mensaje cuando no hay tests habilitados -->
@@ -987,23 +1013,24 @@ html {
       </div>
     </main>
 
-<footer class="premium-footer">
-    <div class="footer-container">
+    <footer class="premium-footer">
+      <div class="footer-container">
         <div class="footer-left">
-            <img src="../../img/one-logoletra.png" alt="ONE" class="footer-logo-letra">
-            <span> | Todos los derechos reservados. © 2026</span>
+          <img src="../../img/one-logoletra.png" alt="ONE" class="footer-logo-letra">
+          <span> | Todos los derechos reservados. © 2026</span>
         </div>
 
         <div class="footer-right">
-            <span class="developed-txt">Desarrollado por</span>
-            <a href="https://escencialconsultora.com.ar/" target="_blank" class="dev-link" title="Ir a Escencial Consultora">
-                <img src="../../img/one-logocolor.png" alt="ONE" class="dev-logo-one">
-                <span class="by-txt">by</span>
-                <img src="../../img/escencial-logoblanco.png" alt="Escencial" class="dev-logo-escencial">
-            </a>
+          <span class="developed-txt">Desarrollado por</span>
+          <a href="https://escencialconsultora.com.ar/" target="_blank" class="dev-link"
+            title="Ir a Escencial Consultora">
+            <img src="../../img/one-logocolor.png" alt="ONE" class="dev-logo-one">
+            <span class="by-txt">by</span>
+            <img src="../../img/escencial-logoblanco.png" alt="Escencial" class="dev-logo-escencial">
+          </a>
         </div>
-    </div>
-</footer>
+      </div>
+    </footer>
 
   </div>
 
@@ -1075,7 +1102,7 @@ html {
     // ============================================
     // CONFIGURACIÓN
     // ============================================
-    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw1oYty7uLPpgVT2enkZOTEnfmUCJmNIpX4FR3h4a1Mc3OUYGK_fgfLlUItqEeR-HPp/exec';
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxx02BaP_dJChGcVBpF9myeLqIr5jdxz4cH4KKTDNaHBAXEYyjQ-yMx8HZaRet0mC8z/exec';
 
     // ============================================
     // ELEMENTOS DEL DOM
@@ -1128,6 +1155,7 @@ html {
       return testsArray;
     }
 
+    // 🔹 Nuevo: obtener usuarios + admins
     async function fetchAllUsers() {
       try {
         console.log('📡 Obteniendo usuarios desde Google Sheets...');
@@ -1143,29 +1171,28 @@ html {
         }
 
         const users = data.usuarios.map((item, index) => {
-          const testValue = item.Test || item.test;
+          const testValue = item.Test || item.test || item.tests || item.Tests;
           const testsArray = parseTestValue(testValue);
 
           const user = {
             id: item.id || index + 1,
-            Usuario: item.Usuario || item.username || '',
+            Usuario: item.Usuario || item.username || item.Usuario || '',
             Contraseña: item.Contraseña || item.password || '',
             Puesto: item.Puesto || item.puesto || item.Cargo || '-',
             tests: testsArray,
-            testRaw: testValue
+            testRaw: testValue,
+            // 🔹 idAdmin asociado a este usuario
+            idAdmin: item.idAdmin || item.IDAdmin || item.idadmin || ''
           };
 
-          console.log(`👤 Usuario procesado: ${user.Usuario}, Tests: ${user.tests.join(',')}, Raw: ${user.testRaw}`);
+          console.log(`👤 Usuario procesado: ${user.Usuario}, Tests: ${user.tests.join(',')}, Raw: ${user.testRaw}, idAdmin: ${user.idAdmin}`);
           return user;
         });
 
-        if (data.admin.length > 0) {
-          const firstAdmin = data.admin[0];
-          localStorage.setItem('adminData', JSON.stringify(firstAdmin));
-          console.log('🔐 Primer admin guardado en localStorage:', firstAdmin);
-        }
+        // Admins tal como llegan del Apps Script (ya en formato objeto)
+        const admins = data.admin || [];
 
-        return users;
+        return { users, admins };
       } catch (error) {
         console.error('❌ Error al obtener usuarios:', error);
         throw error;
@@ -1180,6 +1207,23 @@ html {
         return u.Usuario.toLowerCase() === username.toLowerCase() && userPassword === inputPassword;
       });
       return user || null;
+    }
+
+    // 🔹 Nuevo: encuentra el admin correspondiente a un usuario (por idAdmin)
+    function findAdminForUser(user, admins) {
+      if (!user || !admins || !admins.length) return null;
+
+      const idUserAdmin = String(user.idAdmin || user.IDAdmin || user.idadmin || '').trim();
+      if (!idUserAdmin) return null;
+
+      const admin = admins.find(a => {
+        const adminId = String(
+          a.idAdmin || a.IDAdmin || a.id || a.ID || a.idadmin || ''
+        ).trim();
+        return adminId && adminId === idUserAdmin;
+      });
+
+      return admin || null;
     }
 
     function showPanel(user) {
@@ -1241,21 +1285,37 @@ html {
       loadingMessage.classList.add('show');
 
       try {
-        const users = await fetchAllUsers();
+        // 🔹 Ahora recibimos usuarios + admins
+        const { users, admins } = await fetchAllUsers();
         const authenticatedUser = validateCredentials(username, password, users);
 
         if (authenticatedUser) {
-          // ✅ Guardar sesión (sin contraseña)
+          // Buscar admin asociado al usuario
+          const associatedAdmin = findAdminForUser(authenticatedUser, admins);
+          console.log('👔 Admin asociado al usuario:', associatedAdmin);
+
+          // ✅ Guardar sesión de usuario (sin contraseña)
           const sessionUser = {
             Usuario: authenticatedUser.Usuario,
             Puesto: authenticatedUser.Puesto,
-            tests: authenticatedUser.tests
+            tests: authenticatedUser.tests,
+            idAdmin: authenticatedUser.idAdmin || ''
           };
           localStorage.setItem('sessionUser', JSON.stringify(sessionUser));
           localStorage.setItem('sessionLoggedIn', '1');
 
-          // (si querés caducidad opcional)
-          // localStorage.setItem('sessionExpiresAt', String(Date.now() + 1000*60*60*6)); // 6h
+          // ✅ Guardar info del admin asociado en localStorage
+          if (associatedAdmin) {
+            const sessionAdmin = {
+              id: associatedAdmin.idAdmin || associatedAdmin.IDAdmin || associatedAdmin.id || associatedAdmin.ID || '',
+              nombre: associatedAdmin.nombre || associatedAdmin.Nombre || '',
+              email: associatedAdmin.email || associatedAdmin.Email || associatedAdmin.correo || associatedAdmin.Correo || ''
+            };
+            localStorage.setItem('adminData', JSON.stringify(sessionAdmin));
+          } else {
+            // Por si no se pudiera resolver el admin
+            localStorage.removeItem('sessionUserAdmin');
+          }
 
           showPanel(authenticatedUser);
         } else {
@@ -1286,7 +1346,6 @@ html {
       panelView.classList.add('hidden');
       loginView.classList.remove('hidden');
 
-
       loginForm.reset();
       currentUser = null;
       loginBtn.disabled = false;
@@ -1295,16 +1354,16 @@ html {
       loadingMessage.textContent = 'Verificando credenciales...';
       errorMessage.classList.remove('show');
     });
+
     backToParticipantBtn.addEventListener('click', () => {
       window.location.href = 'index.html';
     });
+
     // ============================================
-    // INICIALIZACIÓN
+    // INICIALIZACIÓN Y SESIÓN
     // ============================================
     console.log('🚀 Sistema de evaluaciones iniciado');
 
-    // init estrellas
-    // (ya se inicializa arriba con resize/draw)
     function restoreSessionIfAny() {
       const logged = localStorage.getItem('sessionLoggedIn') === '1';
       const raw = localStorage.getItem('sessionUser');
@@ -1312,10 +1371,10 @@ html {
 
       try {
         const user = JSON.parse(raw);
-
-        // (si usaste expiración)
-        // const exp = Number(localStorage.getItem('sessionExpiresAt') || 0);
-        // if (exp && Date.now() > exp) return clearSession();
+        // Si quisieras usar el admin guardado:
+        // const adminRaw = localStorage.getItem('sessionUserAdmin');
+        // const admin = adminRaw ? JSON.parse(adminRaw) : null;
+        // console.log('🔁 Restaurando sesión, admin asociado:', admin);
 
         showPanel(user);
       } catch (e) {
@@ -1327,12 +1386,14 @@ html {
       localStorage.removeItem('sessionLoggedIn');
       localStorage.removeItem('sessionUser');
       localStorage.removeItem('sessionExpiresAt');
+      // 🔹 también eliminamos el admin del usuario
+      localStorage.removeItem('sessionUserAdmin');
     }
 
     // ✅ Llamar al iniciar
     restoreSessionIfAny();
-
   </script>
+
 </body>
 
 </html>

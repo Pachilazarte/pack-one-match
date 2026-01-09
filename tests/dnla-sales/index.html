@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +8,17 @@
   <link rel="shortcut icon" href="../../img/favicon.png" type="image/png">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    html, body { height: 100%; margin: 0; }
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+    }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
@@ -38,7 +47,7 @@
       margin: 0 auto 12px auto;
       height: 80px;
       width: auto;
-      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.15));
+      filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.15));
     }
 
     .logo-results {
@@ -46,7 +55,7 @@
       margin: 0 auto 12px auto;
       height: 85px;
       width: auto;
-      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.15));
+      filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.15));
     }
 
     h1 {
@@ -76,12 +85,14 @@
     }
 
     .main-header .subtitle {
-      color: rgba(255,255,255,0.95);
+      color: rgba(255, 255, 255, 0.95);
       margin-bottom: 0;
       font-size: 15px;
     }
 
-    .form-group { margin-bottom: 28px; }
+    .form-group {
+      margin-bottom: 28px;
+    }
 
     label {
       display: block;
@@ -110,7 +121,9 @@
       transform: translateY(-2px);
     }
 
-    input::placeholder { color: #94a3b8; }
+    input::placeholder {
+      color: #94a3b8;
+    }
 
     .btn {
       width: 100%;
@@ -131,20 +144,26 @@
     .btn::before {
       content: '';
       position: absolute;
-      top: 0; left: -100%;
-      width: 100%; height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
       transition: left 0.5s;
     }
 
-    .btn:hover::before { left: 100%; }
+    .btn:hover::before {
+      left: 100%;
+    }
 
     .btn:hover {
       transform: translateY(-3px);
       box-shadow: 0 8px 25px rgba(11, 74, 110, 0.4);
     }
 
-    .btn:active { transform: translateY(-1px); }
+    .btn:active {
+      transform: translateY(-1px);
+    }
 
     .btn:disabled {
       opacity: 0.5;
@@ -173,7 +192,8 @@
     }
 
     .progress-bar {
-      width: 100%; height: 10px;
+      width: 100%;
+      height: 10px;
       background: linear-gradient(90deg, #e2e8f0 0%, #cbd5e1 100%);
       border-radius: 10px;
       overflow: hidden;
@@ -201,7 +221,7 @@
       padding: 32px;
       border-radius: 20px;
       margin-bottom: 28px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
       border: 1px solid #e2e8f0;
     }
 
@@ -252,7 +272,9 @@
       color: white;
     }
 
-    .hidden { display: none !important; }
+    .hidden {
+      display: none !important;
+    }
 
     /* Estilos para la ventana de confirmación */
     .success-message {
@@ -267,8 +289,13 @@
     }
 
     @keyframes scaleIn {
-      from { transform: scale(0); }
-      to { transform: scale(1); }
+      from {
+        transform: scale(0);
+      }
+
+      to {
+        transform: scale(1);
+      }
     }
 
     .success-message h2 {
@@ -319,7 +346,7 @@
 
     .result-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
       border-color: #0b4a6e;
     }
 
@@ -360,17 +387,36 @@
       letter-spacing: 0.5px;
     }
 
-    .badge-sobresaliente { background: #dcfce7; color: #166534; }
-    .badge-fortaleza { background: #dbeafe; color: #1e40af; }
-    .badge-medio { background: #fef3c7; color: #92400e; }
-    .badge-desarrollo { background: #fed7aa; color: #9a3412; }
-    .badge-bajo { background: #fee2e2; color: #991b1b; }
+    .badge-sobresaliente {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .badge-fortaleza {
+      background: #dbeafe;
+      color: #1e40af;
+    }
+
+    .badge-medio {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .badge-desarrollo {
+      background: #fed7aa;
+      color: #9a3412;
+    }
+
+    .badge-bajo {
+      background: #fee2e2;
+      color: #991b1b;
+    }
 
     .chart-container {
       background: white;
       padding: 32px;
       border-radius: 16px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
       margin: 32px 0;
     }
 
@@ -431,111 +477,138 @@
     }
 
     @media (max-width: 768px) {
-      body { padding: 16px; }
-      .container { padding: 24px; }
-      h1 { font-size: 26px; }
-      h2 { font-size: 22px; }
-      .question-text { font-size: 18px; }
-      .option { padding: 16px; }
+      body {
+        padding: 16px;
+      }
+
+      .container {
+        padding: 24px;
+      }
+
+      h1 {
+        font-size: 26px;
+      }
+
+      h2 {
+        font-size: 22px;
+      }
+
+      .question-text {
+        font-size: 18px;
+      }
+
+      .option {
+        padding: 16px;
+      }
     }
 
-.one-logocolor {
-        display: block;
-        width: 250px;             /* Ancho fijo de 250px */
-        height: auto;             /* Altura automática para no deformar */
-        margin: 0 auto 20px auto; /* Centrado y separado del título de abajo */
-        object-fit: contain;
+    .one-logocolor {
+      display: block;
+      width: 250px;
+      /* Ancho fijo de 250px */
+      height: auto;
+      /* Altura automática para no deformar */
+      margin: 0 auto 20px auto;
+      /* Centrado y separado del título de abajo */
+      object-fit: contain;
     }
-
   </style>
 </head>
+
 <body>
 
-<a href="../../usuarios.html" class="btn-back">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M15 18l-6-6 6-6"/>
-        </svg>
-        Volver a Usuarios
-    </a>
+  <a href="../../usuarios.html" class="btn-back">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M15 18l-6-6 6-6" />
+    </svg>
+    Volver a Usuarios
+  </a>
 
-    <style>
-        .btn-back {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            padding: 10px 20px;
-            background: rgba(255, 255, 255, 0.9);
-            color: #020f27 !important;
-            border: 2px solid #020f27;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            text-decoration: none;
-            font-weight: 700;
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-            transition: all 0.3s ease;
-            font-size: 14px;
-            backdrop-filter: blur(4px);
-        }
+  <style>
+    .btn-back {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      padding: 10px 20px;
+      background: rgba(255, 255, 255, 0.9);
+      color: #020f27 !important;
+      border: 2px solid #020f27;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-decoration: none;
+      font-weight: 700;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      transition: all 0.3s ease;
+      font-size: 14px;
+      backdrop-filter: blur(4px);
+    }
 
-        .btn-back:hover {
-            transform: translateY(-2px);
-            background: #020f27;
-            color: white !important;
-            box-shadow: 0 6px 15px rgba(2, 15, 39, 0.2);
-        }
+    .btn-back:hover {
+      transform: translateY(-2px);
+      background: #020f27;
+      color: white !important;
+      box-shadow: 0 6px 15px rgba(2, 15, 39, 0.2);
+    }
 
-        .btn-back svg {
-            transition: transform 0.3s ease;
-        }
+    .btn-back svg {
+      transition: transform 0.3s ease;
+    }
 
-        .btn-back:hover svg {
-            transform: translateX(-3px);
-        }
+    .btn-back:hover svg {
+      transform: translateX(-3px);
+    }
 
-        /* Ocultar en móviles muy pequeños si molesta, o ajustar */
-        @media (max-width: 480px) {
-            .btn-back {
-                padding: 8px 14px;
-                font-size: 12px;
-            }
-        }
-        
-        @media print {
-            .btn-back { display: none !important; }
-        }
+    /* Ocultar en móviles muy pequeños si molesta, o ajustar */
+    @media (max-width: 480px) {
+      .btn-back {
+        padding: 8px 14px;
+        font-size: 12px;
+      }
+    }
 
-.-one-logocolor {
-    display: block;      /* Permite centrar con margin auto */
-    margin: 0 auto 1.5rem auto; /* Centrado y con espacio abajo de 1.5rem */
-    width: 250px;        /* El tamaño que pediste */
-    height: auto;        /* Mantiene la proporción */
-    object-fit: contain;
-}
+    @media print {
+      .btn-back {
+        display: none !important;
+      }
+    }
 
-/* Ajustes para los textos de la pantalla de registro */
-#registrationScreen h1 {
-    font-size: 1.8rem;
-    color: var(--escencial-navy);
-    margin-bottom: 0.5rem;
-    text-align: center;
-}
+    .-one-logocolor {
+      display: block;
+      /* Permite centrar con margin auto */
+      margin: 0 auto 1.5rem auto;
+      /* Centrado y con espacio abajo de 1.5rem */
+      width: 250px;
+      /* El tamaño que pediste */
+      height: auto;
+      /* Mantiene la proporción */
+      object-fit: contain;
+    }
 
-#registrationScreen .subtitle {
-    font-size: 1.1rem;
-    color: #666; /* Un gris más profesional */
-    text-align: center;
-    margin-bottom: 2rem;
-}
+    /* Ajustes para los textos de la pantalla de registro */
+    #registrationScreen h1 {
+      font-size: 1.8rem;
+      color: var(--escencial-navy);
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
 
-    </style>
+    #registrationScreen .subtitle {
+      font-size: 1.1rem;
+      color: #666;
+      /* Un gris más profesional */
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+  </style>
 
   <!-- Pantalla de Registro -->
-<div id="registrationScreen" class="container" style="max-width:650px;">
+  <div id="registrationScreen" class="container" style="max-width:650px;">
     <img src="../../img/one-logocolor.png" alt="one-logocolor" class="one-logocolor">
     <h1>DNLA - Perfil Comercial</h1>
     <p class="subtitle">Evaluación de Competencias de Ventas</p>
@@ -589,13 +662,11 @@
   <!-- Pantalla de Confirmación -->
   <div id="successScreen" class="container hidden" style="max-width:650px; padding-top:32px; padding-bottom:32px;">
     <img src="../../img/one-logocolor.png" alt="one-logocolor" class="one-logocolor">
-    
+
     <div class="success-message">
       <div class="success-icon">✅</div>
       <h2>¡Evaluación Completada!</h2>
       <p>Tus respuestas han sido enviadas correctamente.</p>
-      <p>Recibirás tu informe detallado por email en los próximos minutos.</p>
-      <p style="font-size:16px; margin-top:24px; opacity:0.9;">📧 Revisa tu bandeja de entrada y spam</p>
     </div>
 
     <div class="info-box" style="margin-top:32px;">
@@ -606,7 +677,7 @@
   <!-- Pantalla de Resultados (opcional - puedes eliminarla si no la usas) -->
   <div id="resultsScreen" class="container hidden">
     <img src="../../img/one-logocolor.png" alt="one-logocolor" class="one-logocolor">
-    
+
     <div id="globalInterpretation" class="result-card" style="text-align:center; margin-bottom:32px;">
       <!-- Se llena dinámicamente -->
     </div>
@@ -622,12 +693,12 @@
 
   <script>
     (function guard() {
-            const logged = localStorage.getItem('sessionLoggedIn') === '1';
-            if (!logged) {
-                // ajusta el path según tu estructura
-                window.location.href = '../../evaluaciones.html'; // o donde esté tu login/panel
-            }
-        })();
+      const logged = localStorage.getItem('sessionLoggedIn') === '1';
+      if (!logged) {
+        // ajusta el path según tu estructura
+        window.location.href = '../../evaluaciones.html'; // o donde esté tu login/panel
+      }
+    })();
     // ============================================================================
     // CONFIGURACIÓN
     // ============================================================================
@@ -650,35 +721,35 @@
       { id: 3, dimension: 'Responsabilidad Personal', text: 'Asumo los errores en lugar de buscar culpables.' },
       { id: 4, dimension: 'Responsabilidad Personal', text: 'Mantengo mi palabra incluso ante dificultades.' },
       { id: 5, dimension: 'Responsabilidad Personal', text: 'Me esfuerzo por cumplir con los estándares que exijo a otros.' },
-      
+
       // Compromiso y Motivación (6-10)
       { id: 6, dimension: 'Compromiso y Motivación', text: 'Mantengo la energía y el interés incluso en tareas repetitivas.' },
       { id: 7, dimension: 'Compromiso y Motivación', text: 'Busco superar las metas establecidas.' },
       { id: 8, dimension: 'Compromiso y Motivación', text: 'Persevero hasta terminar lo que comienzo.' },
       { id: 9, dimension: 'Compromiso y Motivación', text: 'Me motiva ver los resultados de mi trabajo.' },
       { id: 10, dimension: 'Compromiso y Motivación', text: 'En momentos difíciles, encuentro razones para seguir adelante.' },
-      
+
       // Autoestima y Confianza (11-15)
       { id: 11, dimension: 'Autoestima y Confianza', text: 'Confío en mis decisiones, incluso si otros dudan.' },
       { id: 12, dimension: 'Autoestima y Confianza', text: 'Creo en mi capacidad para resolver problemas.' },
       { id: 13, dimension: 'Autoestima y Confianza', text: 'Afronto los desafíos sin temor al error.' },
       { id: 14, dimension: 'Autoestima y Confianza', text: 'Suelo mantener una actitud positiva frente a los obstáculos.' },
       { id: 15, dimension: 'Autoestima y Confianza', text: 'Me considero competente y capaz en mi función laboral.' },
-      
+
       // Empatía y Relaciones (16-20)
       { id: 16, dimension: 'Empatía y Relaciones', text: 'Escucho atentamente las necesidades de los demás.' },
       { id: 17, dimension: 'Empatía y Relaciones', text: 'Procuro entender el punto de vista ajeno antes de opinar.' },
       { id: 18, dimension: 'Empatía y Relaciones', text: 'Mantengo relaciones cordiales incluso bajo presión.' },
       { id: 19, dimension: 'Empatía y Relaciones', text: 'Suelo percibir cuando alguien necesita apoyo o contención.' },
       { id: 20, dimension: 'Empatía y Relaciones', text: 'Adapto mi forma de comunicarme según la persona o situación.' },
-      
+
       // Adaptabilidad y Flexibilidad (21-25)
       { id: 21, dimension: 'Adaptabilidad y Flexibilidad', text: 'Me ajusto con rapidez a los cambios en el entorno laboral.' },
       { id: 22, dimension: 'Adaptabilidad y Flexibilidad', text: 'Busco soluciones nuevas ante imprevistos.' },
       { id: 23, dimension: 'Adaptabilidad y Flexibilidad', text: 'Me adapto bien a distintos estilos de liderazgo o trabajo.' },
       { id: 24, dimension: 'Adaptabilidad y Flexibilidad', text: 'Acepto los cambios como oportunidades para aprender.' },
       { id: 25, dimension: 'Adaptabilidad y Flexibilidad', text: 'Puedo mantener la calma cuando algo no sale como esperaba.' },
-      
+
       // Organización y Planificación (26-30)
       { id: 26, dimension: 'Organización y Planificación', text: 'Me gusta planificar antes de actuar.' },
       { id: 27, dimension: 'Organización y Planificación', text: 'Cumplo los plazos sin dificultad.' },
@@ -719,17 +790,17 @@
       document.getElementById('registrationScreen').classList.add('hidden');
       document.getElementById('testScreen').classList.remove('hidden');
       document.getElementById('participantName').textContent = '📊 ' + userName + ' ' + userLastName;
-      
+
       loadQuestion();
     }
 
     function loadQuestion() {
       const question = questions[currentQuestion];
       document.getElementById('questionText').textContent = question.text;
-      
+
       const optionsContainer = document.getElementById('optionsContainer');
       optionsContainer.innerHTML = '';
-      
+
       options.forEach(option => {
         const optionDiv = document.createElement('div');
         optionDiv.className = 'option';
@@ -737,14 +808,14 @@
         optionDiv.onclick = () => selectOption(option.value, optionDiv);
         optionsContainer.appendChild(optionDiv);
       });
-      
+
       updateProgress();
     }
 
     function selectOption(value, element) {
       document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
       element.classList.add('selected');
-      
+
       answers[questions[currentQuestion].id] = value;
       document.getElementById('nextBtn').disabled = false;
     }
@@ -754,9 +825,9 @@
         alert('Por favor selecciona una opción');
         return;
       }
-      
+
       currentQuestion++;
-      
+
       if (currentQuestion < questions.length) {
         loadQuestion();
         document.getElementById('nextBtn').disabled = true;
@@ -772,6 +843,24 @@
       document.getElementById('progressPercent').textContent = Math.round(progress) + '%';
     }
 
+    const adminData = localStorage.getItem('adminData');
+    let emailParaEnviar = userEmail;
+    if (adminData) {
+      try {
+        const admin = JSON.parse(adminData);
+        if (admin && admin.email) {
+          console.log("Admin encontrado:", admin.nombre || 'Sin nombre', "| Email:", admin.email);
+          emailParaEnviar = admin.email; // USAMOS EMAIL DEL ADMIN
+        } else {
+          console.log("adminData existe pero no tiene email válido");
+        }
+      } catch (e) {
+        console.error("Error al parsear adminData:", e);
+      }
+    } else {
+      console.log("No hay admin logueado, se usará el email del participante.");
+    }
+
     // ============================================================================
     // ENVÍO DE DATOS A GOOGLE SHEETS
     // ============================================================================
@@ -779,7 +868,7 @@
     async function sendDataToGoogleSheets() {
       // Ocultar pantalla del test
       document.getElementById('testScreen').classList.add('hidden');
-      
+
       // Convertir respuestas al formato: "1:5,2:4,3:3,..."
       const respuestasArray = [];
       for (let i = 1; i <= 30; i++) {
@@ -793,7 +882,7 @@
         params.append('accion', 'guardar');
         params.append('nombre', userName);
         params.append('apellido', userLastName);
-        params.append('email', userEmail);
+        params.append('email', emailParaEnviar);
         params.append('respuestas', respuestasFormato);
 
         const url = `${GOOGLE_APPS_SCRIPT_URL}?${params.toString()}`;
@@ -807,10 +896,10 @@
         });
 
         console.log('Datos enviados correctamente a Google Sheets');
-        
+
         // Esperar 2 segundos para asegurar que se guardó
         await new Promise(resolve => setTimeout(resolve, 2000));
-        
+
         // Mostrar pantalla de éxito
         document.getElementById('successScreen').classList.remove('hidden');
 
@@ -823,7 +912,7 @@
     // ═══════════════════════════════════════════════════════════════
     // FUNCIONES DE RESULTADOS (OPCIONAL - SI QUIERES MOSTRAR RESULTADOS)
     // ═══════════════════════════════════════════════════════════════
-    
+
     function calculateResults() {
       const dimensionScores = {
         'Responsabilidad Personal': 0,
@@ -860,7 +949,7 @@
 
     function showResults() {
       const { dimensionScores, globalAverage } = calculateResults();
-      
+
       document.getElementById('testScreen').classList.add('hidden');
       document.getElementById('resultsScreen').classList.remove('hidden');
 
@@ -882,7 +971,7 @@
 
     function createRadarChart(scores) {
       const ctx = document.getElementById('radarChart').getContext('2d');
-      
+
       if (radarChart) radarChart.destroy();
 
       radarChart = new Chart(ctx, {
@@ -939,11 +1028,11 @@
     function displayDimensionResults(scores) {
       const container = document.getElementById('dimensionResults');
       container.innerHTML = '<div class="section-title" style="margin-top:32px;">Análisis Detallado por Competencia</div>';
-      
+
       Object.keys(scores).forEach(dim => {
         const score = scores[dim];
         const analysis = getDetailedAnalysis(dim, score);
-        
+
         const card = document.createElement('div');
         card.className = 'result-card';
         card.innerHTML = `
@@ -962,7 +1051,7 @@
 
     function getDetailedAnalysis(dimension, score) {
       let label, badgeClass, description;
-      
+
       const descriptors = {
         'Responsabilidad Personal': {
           sobresaliente: 'Demuestra excelente confiabilidad, asume compromisos con madurez y autocrítica constructiva.',
@@ -1035,9 +1124,9 @@
 
     function displayGlobalInterpretation(globalAverage) {
       const container = document.getElementById('globalInterpretation');
-      
+
       let interpretation, badgeClass, recommendations;
-      
+
       if (globalAverage >= 4.6) {
         interpretation = 'Perfil Sobresaliente';
         badgeClass = 'badge-sobresaliente';
@@ -1103,19 +1192,19 @@
       userName = '';
       userLastName = '';
       userEmail = '';
-      
+
       // Limpiar elementos dinámicos
       const header = document.querySelector('.result-header');
       if (header) header.remove();
-      
+
       const sectionTitles = document.querySelectorAll('.section-title');
       sectionTitles.forEach(title => title.remove());
-      
+
       const synthesis = document.querySelector('.synthesis-box');
       if (synthesis) synthesis.remove();
-      
+
       if (radarChart) radarChart.destroy();
-      
+
       document.getElementById('resultsScreen').classList.add('hidden');
       document.getElementById('successScreen').classList.add('hidden');
       document.getElementById('registrationScreen').classList.remove('hidden');
@@ -1125,4 +1214,5 @@
     }
   </script>
 </body>
+
 </html>

@@ -1221,6 +1221,10 @@
                                     <input type="checkbox" name="test" value="5" />
                                     <span>Test N°5: Big Five</span>
                                 </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="test" value="6" />
+                                    <span>Test N°6: Eneagrama Profesional</span>
+                                </label>
 
                             </div>
                         </div>
@@ -1335,7 +1339,7 @@
         // ============================================
         // CONFIG
         // ============================================
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw1oYty7uLPpgVT2enkZOTEnfmUCJmNIpX4FR3h4a1Mc3OUYGK_fgfLlUItqEeR-HPp/exec';
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxx02BaP_dJChGcVBpF9myeLqIr5jdxz4cH4KKTDNaHBAXEYyjQ-yMx8HZaRet0mC8z/exec';
         const DB_GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby6kBo-HW69iQ6sUx0YbU_xR2qsufgVLOkNCnpPBYeb0A_dn3_u3yR4Q45iK8v9FbdC/exec';
 
         // ============================================
@@ -1368,6 +1372,9 @@
         // BUSCADOR
         const userSearchInput = document.getElementById('user-search');
         const clearSearchBtn = document.getElementById('clear-search');
+
+        // Texto "Admin conectado"
+        const headerAdminStatusText = document.querySelector('.header-actions span');
 
         // ============================================
         // ESTADO
@@ -1426,7 +1433,6 @@
             const uname = normalize(user.userName);
             const puesto = normalize(user.puesto);
             const tests = (user.tests || []).map(t => normalize(t)).join(' ');
-            // permite buscar "test 3" o "3"
             const testsLabel = (user.tests || []).map(t => `test ${normalize(t)}`).join(' ');
 
             return (
@@ -1441,6 +1447,29 @@
             const q = userSearchInput.value;
             filteredUsers = users.filter(u => matchesUser(u, q));
             renderUsers(filteredUsers);
+        }
+
+        // ===== Helpers de admin (id / nombre desde localStorage) =====
+        function getCurrentAdmin() {
+            try {
+                const raw = localStorage.getItem('adminData');
+                return raw ? JSON.parse(raw) : null;
+            } catch {
+                return null;
+            }
+        }
+
+        function getCurrentAdminId() {
+            const admin = getCurrentAdmin();
+            if (!admin) return '';
+            const id = admin.idAdmin ?? admin.id ?? admin.ID ?? '';
+            return String(id ?? '').trim();
+        }
+
+        function getCurrentAdminName() {
+            const admin = getCurrentAdmin();
+            if (!admin) return '';
+            return admin.nombre || admin.Nombre || admin.admin || '';
         }
 
         function enterEditMode(user) {
@@ -1487,7 +1516,7 @@
         }
 
         // ============================================
-        // RENDER TABLA (usa lista recibida)
+        // RENDER TABLA
         // ============================================
         function renderUsers(list) {
             const data = Array.isArray(list) ? list : users;
@@ -1495,13 +1524,12 @@
 
             if (data.length === 0) {
                 userTableBody.innerHTML = `
-          <tr>
-            <td colspan="5" style="text-align: center; padding: 2rem; color: rgba(198,201,215,.75);">
-              ${users.length === 0 ? 'No hay usuarios registrados aún' : 'No se encontraron resultados'}
-            </td>
-          </tr>
-        `;
-                // Conteo: si hay búsqueda activa, mostramos "X de Y"
+        <tr>
+          <td colspan="5" style="text-align: center; padding: 2rem; color: rgba(198,201,215,.75);">
+            ${users.length === 0 ? 'No hay usuarios registrados aún' : 'No se encontraron resultados'}
+          </td>
+        </tr>
+      `;
                 const q = userSearchInput.value.trim();
                 if (users.length === 0) userCountText.textContent = '0 usuarios registrados';
                 else if (q) userCountText.textContent = `0 resultados de ${users.length}`;
@@ -1523,20 +1551,19 @@
                 }
 
                 row.innerHTML = `
-          <td class="col-username">${escapeHtml(user.userName)}</td>
-          <td class="col-password">••••••••</td>
-          <td style="color: rgba(198,201,215,.8); font-size: 0.9rem;">${escapeHtml(user.puesto || '-')}</td>
-          <td class="col-tests">${testsDisplay}</td>
-          <td class="col-actions">
-            <button class="btn btn-small btn-edit" data-action="edit" data-username="${escapeHtml(user.userName)}">
-              <span>Editar</span>
-            </button>
-          </td>
-        `;
+        <td class="col-username">${escapeHtml(user.userName)}</td>
+        <td class="col-password">••••••••</td>
+        <td style="color: rgba(198,201,215,.8); font-size: 0.9rem;">${escapeHtml(user.puesto || '-')}</td>
+        <td class="col-tests">${testsDisplay}</td>
+        <td class="col-actions">
+          <button class="btn btn-small btn-edit" data-action="edit" data-username="${escapeHtml(user.userName)}">
+            <span>Editar</span>
+          </button>
+        </td>
+      `;
                 userTableBody.appendChild(row);
             });
 
-            // Conteo con búsqueda
             const q = userSearchInput.value.trim();
             if (q) {
                 userCountText.textContent = `${data.length} resultados de ${users.length}`;
@@ -1546,7 +1573,7 @@
             }
         }
 
-        // Delegación para editar (busca en users, no en filtered)
+        // Delegación para editar
         userTableBody.addEventListener('click', (e) => {
             const btn = e.target.closest('button[data-action="edit"]');
             if (!btn) return;
@@ -1564,7 +1591,7 @@
             showMessage('Edición cancelada', 'info');
         });
 
-        // BUSCADOR eventos
+        // BUSCADOR
         userSearchInput.addEventListener('input', applySearch);
         userSearchInput.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
@@ -1579,12 +1606,18 @@
         });
 
         // ============================================
-        // FETCH LISTAR
+        // FETCH LISTAR  (★ ahora filtra por idAdmin)
         // ============================================
         async function fetchAllUsersFromGoogleScript() {
             try {
                 userCountText.textContent = 'Cargando usuarios...';
-                const response = await fetch(`${GOOGLE_SCRIPT_URL}?accion=listar`, { method: 'GET' });
+
+                const params = new URLSearchParams({ accion: 'listar' });
+                const idAdmin = getCurrentAdminId();
+                if (idAdmin) params.append('idAdmin', idAdmin); // <-- filtro por admin
+                console.log('Fetching users for admin ID:', idAdmin, params.toString());
+
+                const response = await fetch(`${GOOGLE_SCRIPT_URL}?${params.toString()}`, { method: 'GET' });
                 if (!response.ok) throw new Error('Respuesta no OK');
 
                 const data = await response.json();
@@ -1592,6 +1625,7 @@
                     userCountText.textContent = 'Sin datos de usuarios';
                     return [];
                 }
+                console.log('Raw users data from Google Script:', data.usuarios);
 
                 const usuariosCrudos = data.usuarios;
                 const cleanedUsers = usuariosCrudos.map((item, index) => {
@@ -1614,19 +1648,20 @@
                         testsArray = testsData.map(String);
                     }
 
+                    const idAdminItem = item.idAdmin || item.IDAdmin || item.idadmin;
+
                     return {
                         id: item.id ?? index + 1,
                         userName: userNameData || '',
                         userPassword: userPasswordData || '',
                         puesto: item.Puesto || item.puesto || item.Cargo || '-',
-                        tests: testsArray
+                        tests: testsArray,
+                        idAdmin: idAdminItem ? String(idAdminItem) : ''
                     };
                 });
 
-                if (data.admin && data.admin.length > 0) {
-                    localStorage.setItem('adminData', JSON.stringify(data.admin[0]));
-                }
-
+                // Si viene info de admin, fusionarla con la que ya tenemos
+                
 
                 return cleanedUsers;
             } catch (error) {
@@ -1637,7 +1672,7 @@
         }
 
         // ============================================
-        // CREAR (GET)
+        // CREAR (GET)  ★ envía idAdmin
         // ============================================
         async function sendUserToGoogleScript(userData) {
             const params = new URLSearchParams({
@@ -1647,6 +1682,9 @@
                 puesto: userData.puesto,
                 tests: Array.isArray(userData.tests) ? userData.tests.join(',') : ''
             });
+
+            const idAdmin = getCurrentAdminId();
+            if (idAdmin) params.append('idAdmin', idAdmin);
 
             const url = `${GOOGLE_SCRIPT_URL}?${params.toString()}`;
             const response = await fetch(url, { method: 'GET' });
@@ -1665,7 +1703,7 @@
         }
 
         // ============================================
-        // ACTUALIZAR (POST text/plain JSON)
+        // ACTUALIZAR (POST) ★ también manda idAdmin
         // ============================================
         async function updateUserInGoogleScript(updateData) {
             const payload = {
@@ -1675,6 +1713,10 @@
                 puesto: updateData.puesto,
                 tests: Array.isArray(updateData.tests) ? updateData.tests.join(',') : updateData.tests
             };
+
+            const idAdmin = getCurrentAdminId();
+            if (idAdmin) payload.idAdmin = idAdmin;
+
             Object.keys(payload).forEach(k => payload[k] === undefined && delete payload[k]);
 
             const res = await fetch(GOOGLE_SCRIPT_URL, {
@@ -1693,7 +1735,7 @@
         }
 
         // ============================================
-        // BD EXTERNA (igual)
+        // BD EXTERNA (igual, pero usa helper de nombre)
         // ============================================
         async function sendUserToBDGoogleScript(userData) {
             const params = new URLSearchParams({
@@ -1715,7 +1757,7 @@
         }
 
         // ============================================
-        // LOGIN
+        // LOGIN ADMIN  ★ guarda idAdmin y lo usa luego
         // ============================================
         adminLoginForm.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -1737,12 +1779,15 @@
                 const result = await response.json();
 
                 if (result.estado === 'exito' && result.valido) {
-                    // ⬅️ Guardar datos del admin en localStorage
-                    if (result.datos) {
-                        localStorage.setItem('adminData', JSON.stringify(result.datos));
-                    } else {
-                        // Por si acaso viene sin datos, guarda al menos el nombre que se usó para loguear
-                        localStorage.setItem('adminData', JSON.stringify({ nombre: user }));
+                    const datosAdmin = result.datos || { nombre: user };
+                    console.log('✅ Admin validado:', datosAdmin);
+
+                    // Guardar admin (incluye idAdmin devuelto por el Apps Script)
+                    localStorage.setItem('adminData', JSON.stringify(datosAdmin));
+
+                    if (headerAdminStatusText) {
+                        const nombreAdmin = datosAdmin.nombre || datosAdmin.Nombre || user;
+                        headerAdminStatusText.textContent = `Admin conectado: ${nombreAdmin}`;
                     }
 
                     showView('panel');
@@ -1750,11 +1795,11 @@
                     adminLoginForm.reset();
 
                     users = await fetchAllUsersFromGoogleScript();
-                    applySearch(); // respeta lo que esté escrito en el buscador
+                    applySearch();
                 } else {
                     loginError.textContent = result.mensaje || 'Credenciales incorrectas.';
-                    // Opcional: limpiar adminData si el login falla
                     localStorage.removeItem('adminData');
+                    if (headerAdminStatusText) headerAdminStatusText.textContent = 'Admin desconectado';
                 }
             } catch (error) {
                 console.error('❌ Error en login:', error);
@@ -1762,13 +1807,15 @@
             }
         });
 
-
         backToParticipantBtn.addEventListener('click', () => window.location.href = 'index.html');
+
         adminLogoutBtn.addEventListener('click', () => {
             showView('login');
             showMessage('Sesión cerrada', 'info');
             exitEditMode();
             userSearchInput.value = '';
+            localStorage.removeItem('adminData');
+            if (headerAdminStatusText) headerAdminStatusText.textContent = 'Admin desconectado';
         });
 
         // ============================================
@@ -1868,11 +1915,9 @@
             }
 
             try {
-                const adminData = localStorage.getItem('adminData');
-                let admin = { nombre: 'Desconocido' };
-                if (adminData) admin = JSON.parse(adminData);
+                const adminName = getCurrentAdminName() || 'Desconocido';
 
-                const userWithExtras = { ...newUser, pack: 2, admin: admin.nombre };
+                const userWithExtras = { ...newUser, pack: 2, admin: adminName };
                 await sendUserToBDGoogleScript(userWithExtras);
 
                 showMessage('Usuario registrado exitosamente', 'success');
@@ -1882,7 +1927,6 @@
                 setSelectedTests([]);
                 formStatus.textContent = '';
 
-                // Mantener búsqueda aplicada
                 applySearch();
             } catch (error) {
                 console.error('Error en sendUserToBDGoogleScript:', error);
@@ -1897,6 +1941,7 @@
         // INIT
         showView('login');
     </script>
+
 </body>
 
 </html>
