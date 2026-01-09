@@ -168,7 +168,7 @@
         align-items: center;
         justify-content: center;
         min-height: 100vh;
-        padding: 1rem;
+        padding: 2rem;
     }
 
     .login-card {
@@ -220,10 +220,16 @@
         width: 80px;
         height: 80px;
         border-radius: 50%;
+        /* Círculo perfecto */
+
         background-image: url('./img/one-logocolor.png');
+
+        /* ✅ CORRECCIÓN: */
         background-size: contain;
+        /* Ajusta la imagen completa dentro */
         background-repeat: no-repeat;
         background-position: center;
+
         box-shadow: 0 0 0 1px rgba(198, 201, 215, .18), 0 0 40px rgba(107, 225, 227, .18);
         animation: logoPulse 4.5s ease-in-out infinite;
         margin: 0 auto 1.5rem;
@@ -420,23 +426,65 @@
         width: 45px;
         height: 45px;
         border-radius: 50%;
+        /* Hace el contenedor redondo */
+
         background-image: url('./img/one-logocolor.png');
         background-size: 85%;
+        /* Logo un poco más chico para que no toque bordes */
         background-repeat: no-repeat;
         background-position: center;
+
+        /* Borde real suave */
         border: 1px solid rgba(198, 201, 215, .25);
+
+        /* Sombra externa (glow) */
         box-shadow: 0 0 35px rgba(107, 225, 227, .25);
+
         position: relative;
         flex-shrink: 0;
+
+        /* ✅ LA CLAVE: Esto recorta todo lo que se salga del círculo (incluidas las puntas) */
         overflow: hidden;
+
+        /* ✅ EXTRA: Esto ayuda a que el recorte sea suave en algunos navegadores */
         -webkit-mask-image: -webkit-radial-gradient(white, black);
     }
 
+    .brand-logo {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        /* Hace el contenedor redondo */
+
+        background-image: url('./img/one-logocolor.png');
+        background-size: 85%;
+        /* Logo un poco más chico para que no toque bordes */
+        background-repeat: no-repeat;
+        background-position: center;
+
+        /* Borde real suave */
+        border: 1px solid rgba(198, 201, 215, .25);
+
+        /* Sombra externa (glow) */
+        box-shadow: 0 0 35px rgba(107, 225, 227, .25);
+
+        position: relative;
+        flex-shrink: 0;
+
+        /* ✅ LA CLAVE: Esto recorta todo lo que se salga del círculo (incluidas las puntas) */
+        overflow: hidden;
+
+        /* ✅ EXTRA: Esto ayuda a que el recorte sea suave en algunos navegadores */
+        -webkit-mask-image: -webkit-radial-gradient(white, black);
+    }
+
+    /* Aseguramos que el brillo también sea redondo por si acaso */
     .brand-logo::after {
         content: "";
         position: absolute;
         inset: 0;
         border-radius: 50%;
+        /* 👈 Seguridad doble */
         background: radial-gradient(circle at 30% 30%, rgba(254, 254, 255, .14), transparent 55%);
         pointer-events: none;
     }
@@ -477,7 +525,6 @@
         display: grid;
         grid-template-columns: 3fr 2fr;
         gap: 1.8rem;
-        width: 100%;
     }
 
     .section-title {
@@ -513,7 +560,6 @@
         align-items: baseline;
         gap: 1rem;
         margin-bottom: 1.0rem;
-        flex-wrap: wrap;
     }
 
     .panel-title {
@@ -539,7 +585,7 @@
     }
 
     .search-wrap {
-        flex: 1 1 280px;
+        flex: 1 1 340px;
         display: flex;
         gap: .6rem;
         align-items: center;
@@ -585,15 +631,13 @@
     .table-wrap {
         background: rgba(254, 254, 255, .04);
         border-radius: var(--radius-md);
-        overflow: auto;
+        overflow: hidden;
         border: 1px solid rgba(198, 201, 215, .16);
-        -webkit-overflow-scrolling: touch;
     }
 
     .data-table {
         width: 100%;
         border-collapse: collapse;
-        min-width: 650px;
     }
 
     .data-table thead {
@@ -694,7 +738,6 @@
         margin-right: .8rem;
         cursor: pointer;
         accent-color: var(--c-cyan);
-        flex-shrink: 0;
     }
 
     .checkbox-item span {
@@ -734,7 +777,6 @@
         display: flex;
         align-items: center;
         gap: .5rem;
-        flex-wrap: wrap;
     }
 
     .dot-soft {
@@ -764,7 +806,7 @@
         top: 0;
         left: 50%;
         transform: translateX(-50%) translateY(-100px);
-        width: calc(100% - 2rem);
+        width: 100%;
         max-width: 520px;
         padding: 1rem 1.5rem;
         border-radius: 0 0 var(--radius-md) var(--radius-md);
@@ -835,7 +877,6 @@
         font-size: .78rem;
         font-weight: 800;
         margin-bottom: .9rem;
-        flex-wrap: wrap;
     }
 
     .edit-badge strong {
@@ -846,6 +887,12 @@
         display: flex;
         gap: .6rem;
         margin-top: .35rem;
+    }
+
+    @media (max-width: 900px) {
+        .main {
+            grid-template-columns: 1fr;
+        }
     }
 
     /* ══════════════════════════════════════════════════════════
@@ -869,9 +916,14 @@
         width: 100%;
         margin-top: auto;
         border-top: 3px solid #ff69b4;
+
+        /* Fondo negro sólido */
         background: #000000 !important;
+
+        /* ✅ QUITAMOS LOS FILTROS (Esto arregla el efecto visual raro) */
         backdrop-filter: none;
         -webkit-backdrop-filter: none;
+
         padding: 18px 0;
         color: #ffffff;
         font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -885,8 +937,6 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        flex-wrap: wrap;
-        gap: 1rem;
     }
 
     /* --- Lado Izquierdo --- */
@@ -895,7 +945,7 @@
         align-items: center;
         gap: 8px;
         opacity: 0.85;
-        flex-wrap: wrap;
+        /* Ligeramente atenuado */
     }
 
     /* Ajuste del tamaño del logo de letra "ONE" */
@@ -910,7 +960,6 @@
         display: flex;
         align-items: center;
         gap: 12px;
-        flex-wrap: wrap;
     }
 
     .developed-txt {
@@ -947,7 +996,28 @@
 
     .dev-logo-escencial {
         height: 24px;
+        /* Ajustado para el logo blanco de Escencial */
         width: auto;
+    }
+
+    /* Responsive: Se adapta a pantallas pequeñas */
+    @media (max-width: 768px) {
+        .footer-container {
+            flex-direction: column;
+            gap: 15px;
+            text-align: center;
+        }
+
+        .footer-left,
+        .footer-right {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .developed-txt {
+            width: 100%;
+            margin-bottom: 5px;
+        }
     }
 
     /* ════════════════════════════════════════
@@ -957,18 +1027,25 @@
     /* 1. Dimensiones */
     ::-webkit-scrollbar {
         width: 12px;
+        /* Un pelín más ancha para que luzca el negro */
         height: 12px;
     }
 
     /* 2. El fondo (el carril) AHORA ES NEGRO EXPLÍCITO */
+    /* Esto elimina cualquier riesgo de que se vea blanco de fondo */
     ::-webkit-scrollbar-track {
         background: var(--c-black);
     }
 
     /* 3. La "píldora" neon */
     ::-webkit-scrollbar-thumb {
+        /* Tu degradado de marca */
         background: linear-gradient(180deg, var(--c-cyan), var(--c-pink));
+
         border-radius: 99px;
+
+        /* CLAVE: El borde es del mismo color que el fondo (NEGRO) */
+        /* Esto crea el efecto de "flotar" pero sobre negro, nunca sobre blanco */
         border: 3px solid var(--c-black);
         background-clip: content-box;
     }
@@ -976,6 +1053,7 @@
     /* 4. Efecto Hover: Se ilumina más */
     ::-webkit-scrollbar-thumb:hover {
         border: 2px solid var(--c-black);
+        /* Se hace un poco más gordita */
         background: linear-gradient(180deg, #6be1e3, #e17bd7);
     }
 
@@ -983,290 +1061,7 @@
     html {
         scrollbar-width: thin;
         scrollbar-color: var(--c-pink) var(--c-black);
-    }
-
-    /* ══════════════════════════════════════════════════════════
-   MEDIA QUERIES - RESPONSIVE
-   ══════════════════════════════════════════════════════════ */
-
-    /* Tablets (menos de 900px) */
-    @media (max-width: 900px) {
-        .main {
-            grid-template-columns: 1fr;
-            padding: 1.5rem 1rem;
-            gap: 1.5rem;
-        }
-
-        .section-title {
-            font-size: 1.35rem;
-        }
-
-        .panel,
-        .form-panel {
-            padding: 1.4rem 1.2rem;
-        }
-
-        .data-table {
-            min-width: 600px;
-        }
-    }
-
-    /* Móviles (menos de 600px) */
-    @media (max-width: 600px) {
-        /* Login */
-        .login-card {
-            padding: 2rem 1.5rem;
-        }
-
-        .login-title {
-            font-size: 1.6rem;
-        }
-
-        .login-subtitle {
-            font-size: 0.85rem;
-        }
-
-        .login-logo {
-            width: 70px;
-            height: 70px;
-        }
-
-        /* Header */
-        .header-inner {
-            padding: 0.75rem 1rem;
-            flex-wrap: wrap;
-        }
-
-        .brand {
-            gap: .6rem;
-        }
-
-        .brand-logo {
-            width: 38px;
-            height: 38px;
-        }
-
-        .brand-text-main {
-            font-size: 0.95rem;
-        }
-
-        .brand-text-sub {
-            font-size: 0.75rem;
-        }
-
-        .header-actions {
-            width: 100%;
-            justify-content: space-between;
-            font-size: 0.8rem;
-            padding-top: 0.5rem;
-        }
-
-        .header-actions .btn {
-            padding: .6rem 1rem;
-            font-size: .85rem;
-        }
-
-        /* Main content */
-        .main {
-            padding: 1rem 0.75rem;
-        }
-
-        .section-title {
-            font-size: 1.2rem;
-        }
-
-        .section-subtitle {
-            font-size: 0.85rem;
-        }
-
-        .panel,
-        .form-panel {
-            padding: 1.2rem 1rem;
-        }
-
-        .panel-header {
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 0.5rem;
-        }
-
-        .panel-title {
-            font-size: 0.95rem;
-        }
-
-        .panel-meta {
-            font-size: 0.75rem;
-        }
-
-        /* Toolbar */
-        .toolbar {
-            flex-direction: column;
-            gap: .6rem;
-        }
-
-        .search-wrap {
-            width: 100%;
-        }
-
-        .btn-clear {
-            width: 100%;
-        }
-
-        /* Table */
-        .table-wrap {
-            margin: 0 -1rem;
-            border-radius: 0;
-            border-left: none;
-            border-right: none;
-        }
-
-        .data-table {
-            min-width: 550px;
-            font-size: 0.85rem;
-        }
-
-        .data-table th,
-        .data-table td {
-            padding: .7rem .6rem;
-            font-size: 0.8rem;
-        }
-
-        .test-badge {
-            font-size: 0.7rem;
-            padding: .25rem .6rem;
-        }
-
-        .btn-small {
-            padding: .45rem .7rem;
-            font-size: 0.75rem;
-        }
-
-        /* Form */
-        .form-title {
-            font-size: 1.15rem;
-        }
-
-        .form-subtitle {
-            font-size: 0.82rem;
-        }
-
-        .field-group label {
-            font-size: 0.85rem;
-        }
-
-        .field-group input,
-        .field-group select {
-            padding: 0.8rem 0.9rem;
-            font-size: 0.9rem;
-        }
-
-        .checkbox-item {
-            padding: .6rem .8rem;
-        }
-
-        .checkbox-item span {
-            font-size: 0.85rem;
-        }
-
-        .btn {
-            padding: .75rem 1.2rem;
-            font-size: 0.9rem;
-        }
-
-        .edit-badge {
-            font-size: 0.75rem;
-        }
-
-        /* Footer */
-        .footer-container {
-            flex-direction: column;
-            gap: 12px;
-            text-align: center;
-            padding: 0 15px;
-        }
-
-        .footer-left,
-        .footer-right {
-            flex-direction: column;
-            gap: 8px;
-            width: 100%;
-        }
-
-        .footer-logo-letra {
-            height: 16px;
-        }
-
-        .developed-txt {
-            font-size: 11px;
-        }
-
-        .dev-logo-one {
-            height: 20px;
-        }
-
-        .dev-logo-escencial {
-            height: 22px;
-        }
-
-        /* Message box */
-        #message-box {
-            font-size: 0.85rem;
-            padding: 0.9rem 1.2rem;
-        }
-    }
-
-    /* Móviles muy pequeños (menos de 400px) */
-    @media (max-width: 400px) {
-        .login-card {
-            padding: 1.5rem 1rem;
-        }
-
-        .main {
-            padding: 0.75rem 0.5rem;
-        }
-
-        .panel,
-        .form-panel {
-            padding: 1rem 0.8rem;
-        }
-
-        .data-table {
-            min-width: 500px;
-        }
-
-        .header-inner {
-            padding: 0.6rem 0.75rem;
-        }
-    }
-
-    /* Landscape en móviles */
-    @media (max-height: 500px) and (orientation: landscape) {
-        #admin-login-view {
-            padding: 0.5rem;
-        }
-
-        .login-card {
-            padding: 1.5rem 1.5rem;
-        }
-
-        .login-logo {
-            width: 60px;
-            height: 60px;
-            margin-bottom: 1rem;
-        }
-
-        .login-title {
-            font-size: 1.4rem;
-            margin-bottom: 0.3rem;
-        }
-
-        .login-subtitle {
-            margin-bottom: 1rem;
-        }
-
-        .field-group {
-            margin-bottom: 1rem;
-        }
+        /* Píldora rosa, fondo NEGRO */
     }
 </style>
 
@@ -1819,7 +1614,7 @@
 
                 const params = new URLSearchParams({ accion: 'listar' });
                 const idAdmin = getCurrentAdminId();
-                if (idAdmin) params.append('idAdmin', idAdmin);
+                if (idAdmin) params.append('idAdmin', idAdmin); // <-- filtro por admin
                 console.log('Fetching users for admin ID:', idAdmin, params.toString());
 
                 const response = await fetch(`${GOOGLE_SCRIPT_URL}?${params.toString()}`, { method: 'GET' });
@@ -1864,6 +1659,9 @@
                         idAdmin: idAdminItem ? String(idAdminItem) : ''
                     };
                 });
+
+                // Si viene info de admin, fusionarla con la que ya tenemos
+                
 
                 return cleanedUsers;
             } catch (error) {
@@ -1984,6 +1782,7 @@
                     const datosAdmin = result.datos || { nombre: user };
                     console.log('✅ Admin validado:', datosAdmin);
 
+                    // Guardar admin (incluye idAdmin devuelto por el Apps Script)
                     localStorage.setItem('adminData', JSON.stringify(datosAdmin));
 
                     if (headerAdminStatusText) {
