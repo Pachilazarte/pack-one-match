@@ -1446,6 +1446,7 @@
         function applySearch() {
             const q = userSearchInput.value;
             filteredUsers = users.filter(u => matchesUser(u, q));
+             console.log('Usuarios',filteredUsers)
             renderUsers(filteredUsers);
         }
 
@@ -1485,7 +1486,8 @@
             userNameInput.value = user.userName;
             userNameInput.disabled = true;
 
-            userPasswordInput.value = '';
+            userPasswordInput.value = user.userPassword || '';
+            userPasswordInput.type = 'text';
             userPuestoSelect.value = user.puesto && user.puesto !== '-' ? user.puesto : '';
 
             setSelectedTests(user.tests || []);
@@ -1661,7 +1663,7 @@
                 });
 
                 // Si viene info de admin, fusionarla con la que ya tenemos
-                
+
 
                 return cleanedUsers;
             } catch (error) {
