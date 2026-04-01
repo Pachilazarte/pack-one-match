@@ -663,7 +663,7 @@
         // ====================================================================
         // IMPORTANTE: REEMPLAZA ESTA URL CON TU URL FINAL DEL SCRIPT DE GOOGLE
         // ====================================================================
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwL7sO8-eR536dNSSVUJQWg5iScO1YwF1Bxm1_-KZbhFBk8VknIIE9oCEidd_qV36Rc/exec';
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyUnNyzecLezj68sZRV0Y3D-5ZEbqQ1b31yAXwPzQc7kdGFMDLhNYhAeBuF4XX3ca4x/exec';
 
         // Variables del cronómetro
         let timerStartTime = null;
@@ -1004,28 +1004,41 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function sendToGoogleSheets(dataToSend) {
-            // Convertir objeto data a parámetros URL
-            const params = new URLSearchParams(dataToSend);
-            const fullUrl = `${GOOGLE_SCRIPT_URL}?${params.toString()}`;
+        async function sendToGoogleSheets(dataToSend) {
 
-            console.log("URL completa a enviar:", fullUrl);
+
+            console.log("URL completa a enviar:", GOOGLE_SCRIPT_URL);
+
+            const filaOrdenada = [
+                dataToSend.fecha,
+                dataToSend.nombre || "SinNombre",
+                dataToSend.apellido || "SinApellido",
+                dataToSend.correo || "",
+                dataToSend.respuestas
+            ];
+
+            const payload = {
+                nombreHoja: "Respuestas",
+                fila: filaOrdenada
+            };
 
             try {
-                // Usamos window.open para evitar problemas de CORS
-                const popup = window.open(fullUrl, '_blank', 'width=1,height=1,resizable=no,scrollbars=no');
+                await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
 
-                if (popup) {
-                    setTimeout(() => { popup.close(); }, 1000);
-                    console.log('Datos enviados a Google Sheets exitosamente.');
-                    document.getElementById('successMsg').classList.remove('hidden');
-                } else {
-                    console.warn('No se pudo abrir la ventana emergente. Verifica los bloqueadores de pop-ups.');
-                }
+                console.log('Datos enviados a Google Sheets exitosamente.');
+                document.getElementById('successMsg').classList.remove('hidden');
 
             } catch (error) {
-                console.error('Error al intentar enviar datos:', error);
+                console.error("Error:", error);
             }
+
+
+
         }
 
         function createRadarChart(percentages) {
